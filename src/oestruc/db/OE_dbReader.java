@@ -18,7 +18,7 @@ import java.sql.*;
  * throw <code>QueryException</code>.
  * The linker has multiple modes that must be set
  * before querying.
- * <p>Implements <code>Runnable</code> for multi-threading.</p>
+ * <p>Implements <code>Runnable</code> for multi-threading (future).</p>
  * @author Kyle M. Morris
  * @since 0.0.1
  * @throws QueryException
@@ -26,7 +26,7 @@ import java.sql.*;
  * @see oestruc.db.QueryException
  * 
  */
-public class OE_dbReader implements Runnable {
+public class OE_dbReader {
     // Current mode
     private int _currentMode = -1;
     // Different modes
@@ -89,6 +89,7 @@ public class OE_dbReader implements Runnable {
         return user;
     }
 
+    // implement Runnable in the future for multi-threading
     public void kill(){}
     public void run(){}
 }
