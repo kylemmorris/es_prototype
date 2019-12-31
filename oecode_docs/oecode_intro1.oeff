@@ -1,0 +1,10 @@
+@ Author: Kyle Morris. Date: 11/3/2019, 10:02 pm. This is how you add comments. @
+#start#
+&1&
+	$0genercond$	%Enter
+	$1timing$		%Trigger
+	$2target$		%Unit
+	$3boost$			%5 %5
+	$3duration$		%Turn %1
+	$4end$
+#end#

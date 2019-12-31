@@ -1,0 +1,196 @@
+Operation Extinction cards (FULL LIST, by ID).
+
+The Fellowships:
+-	Alliance: Focused around Straight-ahead shortcuts, strong sense of group identity, and using inventions to plan for the future.
+-	Spawn: Focused on manipulating and overwhelming the opponent, by any means necessary. 
+-	Genesis: Focused on agility, quick wits and protecting what matters most, striking critically.
+-	Reflection: Focused on creating illusions for the opponent, and making their decisions matters (or making decisions for them).
+-	Occult: Focused on raw power and intillect, takes leverage by manipulating the field itself.
+-	Beheld: The generic fellowship.
+
+Current Archetypes:
+-	Alliance: GCA(generic), SubZero(returning inventions), Nyhumol(melding with weapons)
+-	Spawn: The Harvest(small numbers), Avarice(discarding), Hiveblood(paying life)
+-	Genesis: Hylerion(controling)
+-	Reflection:
+-	Occult:
+-	Beheld:
+
+Generic Set Layout: 
+
+	6 fellowships
+	20 cards/fellowship
+x	_________
+	120 cards total
+
+Rarities:
+
+	50 Commons
+	30 Uncommons
+	20 Rares
+	12 Super Rares
+	6 Ultra Rares
+	2 Promos
++	__________
+	120
+
+ID System:
+
+XX-Y-ZZZ
+X: Set ID
+Y: Rarity (0=common; 1=uncommon; 2=rare; 3=super rare; 4=ultra rare; 5=promo)
+Z: Card Number (000 - 999)
+
+============================================================ Base Set 1 (B1) ================================================================
+Theme: To get everyone started fresh with the game. These cards are extremely simple, however balance should be a top priority ALWAYS.
+
+Alliance: 20 Cards:
+	1 Overlord	x
+	6 Units		xxxxxx
+	2 Weapons	xx
+	3 Events		xxx
+	4 Inventions xxxx
+	2 Monument xx
+	1 Base x
+	1 Surplus x
++_______________
+	20
+
+Spawn: 20 Cards:
+	1 Overlord	 x
+	7 Units		 xxxxxxx
+	1 Weapons	 x
+	3 Events		 xxx
+	1 Inventions x
+	4 Monument
+	2 Base
+	1 Surplus
++_______________
+	20
+
+Tags: 
+
+B1-0-001 GCA Operative; Alliance; 2; 1R; Offense Unit; atk2; def2; Primary;
+B1-0-002
+B1-0-003
+B1-0-004 Drone of The Harvest; Spawn; 1; 1R; Offense Unit; atk1; def1; Secondary;
+B1-0-005
+B1-0-006
+B1-0-007 GCA Heavy Gunner; Alliance; 4; 1R; Offense Unit; atk4; def2; Heavy
+B1-0-008
+B1-0-009 Avarice Bounty; Sapawn; 2; 1R; Invention; 3Day / 1Cost; [<Create>; A monument "Gilded Amulet" with "<Pay 1>: Your opponent discards 2."]
+B1-0-010
+B1-0-011
+B1-0-012 Fall Back, Regroup!; Alliance; 3; 1R; Event; [Return 2 Alliance Units you control to your hand, then add 1 "GCA" card from your Grave to your hand.]
+B1-0-013
+B1-0-014
+B1-0-015
+B1-0-016 GCA Laser Sentry; Alliance; 2; 1R; Invention; 1Day / 1Cost; [<Create>; A monument "Laser Sentry" with "<Pay 3>: Destroy 1 Unit".]
+B1-0-017
+B1-0-018 Poison Sack; Spawn; 2; 0R; Secondary Weapon; [Equipped Unit gains +2ATK/-2DEF and is now Spawn type.]
+B1-0-019
+B1-0-020
+B1-0-021
+B1-0-022
+B1-0-023 SubZero Scavenger; Alliance; 2; 1R; Defense Unit; atk1; def4; Secondary; [<Enters, Return an Invention from your field to the hand>: Target Offense Unit gains +4ATK this turn.]
+B1-0-024
+B1-0-025 Sentry of The Harvest; Spawn; 2; 1R; Defense Unit; atk3; def1; Secondary;
+B1-0-026
+B1-0-027
+B1-0-028 SubZero CirculaVault; Alliance; 4; 1R; Monument; [<Return an Invention from your field to the hand>: Target Defense Unit you control gains +3ATK/+5DEF.]
+B1-0-029
+B1-0-030
+B1-0-031
+B1-0-032
+B1-0-033
+B1-0-034 Tower of the Overseer; Alliance; 2; 1R; Invention; 2Day / 1Cost; [<Passive> Alliance Units in this row gain +2DEF. <Create>; A monument "Split Tower" with "<Dawn Phase>; Reveal the top card of your deck. If it's an Invention, add it to your hand."]
+B1-0-035 Blight of The Harvest; Spawn; 2; 1R; Support Unit; atk0; def1; Heavy; [<Enters>; Add 1 "The Harvest" Unit from your deck to your hand + <Pay 2>: Place 1 "The Harvest" Unit from your Grave to your field.]
+B1-0-036
+B1-0-037
+B1-0-038
+B1-0-039 Corosive Explosion; Spawn; 2; 1R; Event; [<Destroy 1 Spawn Unit you control>: Destroy 1 Invention on the field.]
+B1-0-040
+B1-0-041 Gravity Pistol; Alliance; 1; 1R; Secondary Weapon; [Equipped Unit gains +1ATK +1DEF]
+B1-0-042
+B1-0-043
+B1-0-044 The Grid; Alliance; 2; 1R; Base; 3Capacity/1Staycost; [<Passive> Alliance Inventions you control cannot be destroyed. <Pay 4>; Alliance Defense Units you control gain +1ATK/+0DEF.]
+B1-0-045
+B1-0-046
+B1-0-047
+B1-0-048 Milliad's Pillar; Alliance; 2; 1R; Monument; [<Passive> All Alliance Units gain +3ATK/-1DEF]
+B1-0-049
+B1-0-050
+B1-1-051
+B1-1-052 Parasitic Wall; Spawn; 1; 1R; Defense Unit; 1atk; 3def; [<After this battles>; Create a Spawn Support Unit (0ATK/1DEF) in this column.]
+B1-1-053
+B1-1-054
+B1-1-055
+B1-1-056
+B1-1-057 GCA Stealth Unit; Alliance; 1; 1R; Offense Unit; atk0; def1; Secondary; [<Passive> This gains +1ATK/+0DEF for every Invention on the field.]
+B1-1-058
+B1-1-059
+B1-1-060 Hive Meld; Spawn; 4; 1R; Event; [<Discard 1>: Take control of 1 of your opponent's Units for this turn.]
+B1-1-061
+B1-1-062
+B1-1-063
+B1-1-064 Nyhumol Injection; Alliance; 2; 1R; Event; [Target Invention you control becomes a Defense Unit with 0atk and 4def this turn.]
+B1-1-065
+B1-1-066
+B1-1-067
+B1-1-068
+B1-1-069
+B1-1-070 Heat Rifle; Alliance; 3; 1R; Primary Weapon; [Equipped Unit gains +3ATK. <Pay 2>: The equipped Unit can attack directly, and if it does, destroy it after battle.]
+B1-1-071
+B1-1-072
+B1-1-073 Care-Package; Alliance; 2; 1R; Surplus; 1Day; [<Blood Call>; Draw 2.]
+B1-1-074
+B1-1-075 Mind of The Harvest; Spawn; 1; 1R; Offense Unit; atk2; def 1; Secondary; [<Destroy 2 of your Spawn Offense Units>: Create 2 "Harvest" Offense Units (2ATK/1DEF) + <Pay 2 life>: Add 1 Spawn Monument from your Grave to your hand.]
+B1-1-076
+B1-1-077
+B1-1-078
+B1-1-079
+B1-1-080
+B1-2-081 GCA Scientist; Alliance; 1; 1R; Support Unit; atk0; def1; Secondary; [<Enters, Pay 1>; Add 1 Alliance Invention from your deck to your hand.] 
+B1-2-082
+B1-2-083
+B1-2-084
+B1-2-085 GCA Homebase; Alliance; 2; 1R; Invention; 2Day / 1Cost; ["<Passive> All Alliance Units get +1ATK/+0DEF. <Create>; A monument, "Alpha Base" with "<Pay 3>; Draw 2. <Blood Call>; Place 1 Alliance Unit from your deck to the top of the deck."]
+B1-2-086
+B1-2-087
+B1-2-088
+B1-2-089 Avarice Wanderer; Spawn; 3; 1R; Offense Unit; atk2; def2; [<Enters>; Your opponent discards 1. <When your opponent discards, Pay 1>: Deal 2 damage to your opponent.]
+B1-2-090 Crashed Mothership; Alliance; 3; 1R; Invention; 3Day / 1Cost; [<Create>; A Genesis Offense Unit "Hylerion Mothership" (3ATK/4DEF) with "<Pay 2>; Take control of one Genesis Unit."]
+B1-2-091
+B1-2-092
+B1-2-093 Morbid Rebirth; Spawn; 3; 1R; Event; [Place 2 Spawn Units from your Grave to your field for this turn.]
+B1-2-094
+B1-2-095
+B1-2-096
+B1-2-097
+B1-2-098
+B1-2-099
+B1-2-100
+B1-3-101
+B1-3-102 Tinkerer; Alliance; 3; 1R; Defense Unit; atk0; def5; Primary; [<Pay 3>: Return 1 Invention from your Grave onto the field + <Pay x>: Put x day counters on that Invention]
+B1-3-103
+B1-3-104
+B1-3-105 Scrap; Alliance; 2; 1R; Event; [<Discard 1 Alliance Invention>; Draw 2.]
+B1-3-106
+B1-3-107
+B1-3-108
+B1-3-109 Hiveblood Decemator; Spawn; 2; 1R; Offense Unit; 4atk; 1def; Heavy; [<Dawn Phase>; Take 2 life. <Pay 4 life>: Destroy 1 Base + <Destroy 1 Spawn Unit you control>: Draw 1.]
+B1-3-110
+B1-3-111
+B1-3-112
+B1-4-113
+B1-4-114
+B1-4-115 General Ato, First of the New Alliance; Alliance; 4; 1R; Offense Overlord; atk4; def 2; Heavy; [<Passive> All Alliance Units you control gain +1ATK +1DEF. <Pay 1>: Add 1 Day Counter to an Invention you control.]
+B1-4-116 Hive Mind of The Harvest; Spawn; 2; 1R; Defense Overlord; atk1; def4; Secondary; [<Destroy 1 Spawn Unit you control>: Place 2 Spawn Units, 1 from your hand and 1 from your Grave, to your field, then take damage equal to their combined Cost. ]
+B1-4-117
+B1-4-118
+
+B1-5-119
+B1-5-120
+
+
+

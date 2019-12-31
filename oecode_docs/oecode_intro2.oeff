@@ -1,0 +1,13 @@
+@ Author: Kyle Morris. Date: 11/3/2019.@
+
+@ <Pay 2> : Draw 2 and take 2 Damage. @
+
+#start#
+&1&
+	$0genercond$	%Pay %2
+	$1timing$		%Activated
+	$2target$		%P1
+	$3draw$			%2
+	$4damage$		%2
+	$end$
+#end#
