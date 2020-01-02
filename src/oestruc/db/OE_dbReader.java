@@ -15,27 +15,26 @@ import java.sql.*;
  * A cursor object implementation that sends queries
  * to the main database and returns requested data in the form
  * of an <code>OE_dbData</code> object. If the query fails, it will
- * throw <code>QueryException</code>.
+ * throw <code>SQLException</code>.
  * The linker has multiple modes that must be set
  * before querying.
  * <p>Implements <code>Runnable</code> for multi-threading (future).</p>
  * @author Kyle M. Morris
  * @since 0.0.1
- * @throws QueryException
+ * @throws SQLException
  * @return OEabstractCard, OEuserData
- * @see oestruc.db.QueryException
- * 
  */
 public class OE_dbReader {
     // Current mode
     private int _currentMode = -1;
     // Different modes
-    public final int USERMODE = 0;
-    public final int CARDMODE = 1;
-    // Database Stuff
+    public static final int USERMODE = 0;
+    public static final int CARDMODE = 1;
+    // Database objects
     private String TARGET;
     private Connection conn = null;
     private Statement stmt = null;
+    private ResultSet rs = null;
     // Returns
     private OEabstractCard card = null;
     private OEuserData user = null;
@@ -67,29 +66,45 @@ public class OE_dbReader {
         return false;
     }
 
-    public OEabstractCard cardRead(){
-        try {
+    private void connectToDb(){
+        try{
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqite:test.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:test.db");
+            conn.setAutoCommit(false);
         } catch(Exception e){
             System.err.println(e.getClass().getName() + ":" + e.getMessage());
             System.exit(0);
         }
+    }
+
+    public OEabstractCard cardRead(){
         return card;
     }
 
-    public OEuserData userRead() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqite:test.db");
-        } catch(Exception e){
-            System.err.println(e.getClass().getName() + ":" + e.getMessage());
-            System.exit(0);
-        }
+    public OEuserData userRead() throws SQLException {
+        // 1. Connect to Database via method
+        connectToDb();
+        // 2. Create a statement
+        stmt = conn.createStatement();
+        // 3. Get a result (ALWAYS A SINGLE USER)
+        rs = stmt.executeQuery("SELECT " + TARGET + " FROM USER");
+        // 4. Fetch user information
+        String id = rs.getString("USER_ID");
+        String ps = rs.getString("USER_PASS");
+        int deckid = rs.getInt("USER_DECK_ID");
+        Blob pfp = rs.getBlob("USER_PFP");
+        int pts = rs.getInt("USER_PTS");
+        Date datejoin = rs.getDate("USER_DATEJOIN");
+        int urank = rs.getInt("USER_RANK");
+        user = new OEuserData(id, ps, deckid, pfp, pts, datejoin, urank);
+        // 5. Close all connections and return
+        rs.close();
+        stmt.close();
+        conn.close();
         return user;
     }
 
-    // implement Runnable in the future for multi-threading
+    // TODO implement Runnable in the future for multi-threading
     public void kill(){}
     public void run(){}
 }

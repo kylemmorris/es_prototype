@@ -13,7 +13,9 @@ import java.sql.*;
 
 /**
  * A small container object for the current user's specific data.
- * @apiNote Uses hashing for private material. Will be thread-safe.
+ * <p>Contains: getString(), getInt(), getProfilePic(), and getDateJoined().</p>
+ * <p>Inputs for these include: "id", "password", "deck_ID", "points", and "rank".</p>
+ * @apiNote TODO Uses hashing for private material. Will be thread-safe.
  * @author Kyle M. Morris
  * @since 0.0.1
  * 
@@ -83,7 +85,7 @@ public class OEuserData {
      * Gets the join date of the user, as a Date.
      * @return Date
      */
-    public Date getDateJointed(){
+    public Date getDateJoined(){
         return this.joinDate;
     }
 }
