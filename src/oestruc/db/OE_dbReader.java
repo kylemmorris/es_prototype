@@ -8,8 +8,13 @@
 */
 package oestruc.db;
 
-import java.io.*;
-import java.sql.*;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * A cursor object implementation that sends queries
@@ -66,10 +71,12 @@ public class OE_dbReader {
         return false;
     }
 
-    private void connectToDb(){
+    private void connectToDb() {
+        
+        final String DB_URL = "jdbc:sqlite:oe.db";
         try{
-            Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:test.db");
+            Class.forName("org.");
+            conn = DriverManager.getConnection(DB_URL);
             conn.setAutoCommit(false);
         } catch(Exception e){
             System.err.println(e.getClass().getName() + ":" + e.getMessage());
