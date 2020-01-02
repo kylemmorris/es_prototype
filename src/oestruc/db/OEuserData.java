@@ -15,12 +15,12 @@ import java.sql.*;
  * A small container object for the current user's specific data.
  * <p>Contains: getString(), getInt(), getProfilePic(), and getDateJoined().</p>
  * <p>Inputs for these include: "id", "password", "deck_ID", "points", and "rank".</p>
- * @apiNote TODO Uses hashing for private material. Will be thread-safe.
  * @author Kyle M. Morris
  * @since 0.0.1
  * 
  */
 public class OEuserData {
+    // TODO Uses hashing for private material. Will be thread-safe.
     private String id;
     private String password;
     private int deck_ID;
