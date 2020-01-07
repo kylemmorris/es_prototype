@@ -1,0 +1,8 @@
+Current Issues:
+
+- oe.db must be in OE_Run dir
+- Do:
+		javac OE_Run.java
+		java -classpath .:oestruc/db/"sqlite-jdbc-3.27.2.1.jar" OE_Run
+		SQLExceptions happen (from OE_dbReader)
+-

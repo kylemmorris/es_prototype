@@ -38,7 +38,6 @@ public class OE_dbReader {
     // Database objects
     private String TARGET;
     private Connection conn = null;
-    private Statement stmt = null;
     private ResultSet rs = null;
     // Returns
     private OEabstractCard card = null;
@@ -72,14 +71,13 @@ public class OE_dbReader {
     }
 
     private void connectToDb() {
-        
-        final String DB_URL = "jdbc:sqlite:oe.db";
         try{
-            Class.forName("org.");
-            conn = DriverManager.getConnection(DB_URL);
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection("jdbc:sqlite:oe.db");
             conn.setAutoCommit(false);
         } catch(Exception e){
             System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            e.printStackTrace();
             System.exit(0);
         }
     }
@@ -91,22 +89,21 @@ public class OE_dbReader {
     public OEuserData userRead() throws SQLException {
         // 1. Connect to Database via method
         connectToDb();
-        // 2. Create a statement
-        stmt = conn.createStatement();
-        // 3. Get a result (ALWAYS A SINGLE USER)
-        rs = stmt.executeQuery("SELECT " + TARGET + " FROM USER");
-        // 4. Fetch user information
-        String id = rs.getString("USER_ID");
-        String ps = rs.getString("USER_PASS");
-        int deckid = rs.getInt("USER_DECK_ID");
-        Blob pfp = rs.getBlob("USER_PFP");
-        int pts = rs.getInt("USER_PTS");
-        Date datejoin = rs.getDate("USER_DATEJOIN");
-        int urank = rs.getInt("USER_RANK");
-        user = new OEuserData(id, ps, deckid, pfp, pts, datejoin, urank);
-        // 5. Close all connections and return
+        // 2. Get a result (ALWAYS A SINGLE USER)
+        rs = conn.createStatement().executeQuery("SELECT * FROM User WHERE (userid = '" + TARGET + "')");
+        System.out.println("Opened Database Successfully");
+        // 3. Fetch user information
+        String id = rs.getString("userid");
+        System.out.println("Got user id");
+        String ps = rs.getString("userpass");
+        int deckid = rs.getInt("userdeckid");
+        Blob pfp = rs.getBlob("userpfp");
+        int pts = rs.getInt("userpts");
+        Date datejoin = rs.getDate("userdatejoin");
+        int urank = rs.getInt("userrank");
+        user = new OEuserData(TARGET, ps, deckid, pfp, pts, datejoin, urank);
+        // 4. Close all connections and return
         rs.close();
-        stmt.close();
         conn.close();
         return user;
     }

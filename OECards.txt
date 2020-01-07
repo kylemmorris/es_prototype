@@ -34,6 +34,14 @@ Rarities:
 +	__________
 	120
 
+Rarity Layout Maximums (per Fellowship, make it as close as possible):
+
+	10 Commons
+	4 Uncommons
+	3 Rares
+	2 Super Rares
+	1 Ultra Rare
+
 ID System:
 
 XX-Y-ZZZ
@@ -43,6 +51,12 @@ Z: Card Number (000 - 999)
 
 ============================================================ Base Set 1 (B1) ================================================================
 Theme: To get everyone started fresh with the game. These cards are extremely simple, however balance should be a top priority ALWAYS.
+
+	0		10/10
+	1		4/4
+	2		3/3
+	3		2/2
+	4		1/1
 
 Alliance: 20 Cards:
 	1 Overlord	x
@@ -62,9 +76,9 @@ Spawn: 20 Cards:
 	1 Weapons	 x
 	3 Events		 xxx
 	1 Inventions x
-	4 Monument
-	2 Base
-	1 Surplus
+	4 Monument	 xxxx
+	2 Base		 xx
+	1 Surplus	 x
 +_______________
 	20
 
@@ -78,20 +92,20 @@ B1-0-005
 B1-0-006
 B1-0-007 GCA Heavy Gunner; Alliance; 4; 1R; Offense Unit; atk4; def2; Heavy
 B1-0-008
-B1-0-009 Avarice Bounty; Sapawn; 2; 1R; Invention; 3Day / 1Cost; [<Create>; A monument "Gilded Amulet" with "<Pay 1>: Your opponent discards 2."]
+B1-0-009 Avarice Bounty; Spawn; 2; 1R; Invention; 2Day / 1Cost; [<Create>; A monument "Gilded Amulet" with "<Pay 1>: Your opponent discards 2."]
 B1-0-010
 B1-0-011
 B1-0-012 Fall Back, Regroup!; Alliance; 3; 1R; Event; [Return 2 Alliance Units you control to your hand, then add 1 "GCA" card from your Grave to your hand.]
 B1-0-013
-B1-0-014
+B1-0-014 Infection Pod; Spawn; 4; 1R; Monument; [<Passive> Non-Spawn Units in this column gain "<BloodCall>; Put a Spawn Token (0ATK/1DEF) anywhere on your opponent's field in this column, if possible."]
 B1-0-015
 B1-0-016 GCA Laser Sentry; Alliance; 2; 1R; Invention; 1Day / 1Cost; [<Create>; A monument "Laser Sentry" with "<Pay 3>: Destroy 1 Unit".]
 B1-0-017
 B1-0-018 Poison Sack; Spawn; 2; 0R; Secondary Weapon; [Equipped Unit gains +2ATK/-2DEF and is now Spawn type.]
 B1-0-019
 B1-0-020
-B1-0-021
-B1-0-022
+B1-0-021 Spire of the Harvest; Spawn; 4; 1R; Monument; [<Passive> All Spawn Units gain +2ATK/+0DEF.]
+B1-0-022 
 B1-0-023 SubZero Scavenger; Alliance; 2; 1R; Defense Unit; atk1; def4; Secondary; [<Enters, Return an Invention from your field to the hand>: Target Offense Unit gains +4ATK this turn.]
 B1-0-024
 B1-0-025 Sentry of The Harvest; Spawn; 2; 1R; Defense Unit; atk3; def1; Secondary;
@@ -100,7 +114,7 @@ B1-0-027
 B1-0-028 SubZero CirculaVault; Alliance; 4; 1R; Monument; [<Return an Invention from your field to the hand>: Target Defense Unit you control gains +3ATK/+5DEF.]
 B1-0-029
 B1-0-030
-B1-0-031
+B1-0-031 Crysilise; Spawn; 1; 1R; Base; 1Capacity/3Staycost; [<When a Spawn Unit is placed in here>: Place a Spawn Token Unit (1ATK/1DEF) to any legal zone on your field.]
 B1-0-032
 B1-0-033
 B1-0-034 Tower of the Overseer; Alliance; 2; 1R; Invention; 2Day / 1Cost; [<Passive> Alliance Units in this row gain +2DEF. <Create>; A monument "Split Tower" with "<Dawn Phase>; Reveal the top card of your deck. If it's an Invention, add it to your hand."]
@@ -115,7 +129,7 @@ B1-0-042
 B1-0-043
 B1-0-044 The Grid; Alliance; 2; 1R; Base; 3Capacity/1Staycost; [<Passive> Alliance Inventions you control cannot be destroyed. <Pay 4>; Alliance Defense Units you control gain +1ATK/+0DEF.]
 B1-0-045
-B1-0-046
+B1-0-046 Avarice Bunker; Spawn; 3; 1R; Base; 2Capacity/1Staycost; [<When a player discards>; Place a Unit in this onto your field in any legal zone.]
 B1-0-047
 B1-0-048 Milliad's Pillar; Alliance; 2; 1R; Monument; [<Passive> All Alliance Units gain +3ATK/-1DEF]
 B1-0-049
@@ -132,7 +146,7 @@ B1-1-059
 B1-1-060 Hive Meld; Spawn; 4; 1R; Event; [<Discard 1>: Take control of 1 of your opponent's Units for this turn.]
 B1-1-061
 B1-1-062
-B1-1-063
+B1-1-063 Release the Spawn; Spawn; 3; 1R; Surplus; 3Day; [<Passive> All Spawn Units in this column gain +3ATK/+0DEF. <Blood Call>; Destroy all Spawn Units in this column.]
 B1-1-064 Nyhumol Injection; Alliance; 2; 1R; Event; [Target Invention you control becomes a Defense Unit with 0atk and 4def this turn.]
 B1-1-065
 B1-1-066
@@ -165,7 +179,7 @@ B1-2-092
 B1-2-093 Morbid Rebirth; Spawn; 3; 1R; Event; [Place 2 Spawn Units from your Grave to your field for this turn.]
 B1-2-094
 B1-2-095
-B1-2-096
+B1-2-096 Fusion Cell of the Harvest; Spawn; 7; 1R; Monument; [<Enters>; Place Spawn Units (1ATK/1DEF) in your empty zones. <Send any number of Spawn Units you control to the Grave>: Destroy all your opponent's Units with ATK or DEF greater than or equal to the total ATK or DEF of the Units you sent.]
 B1-2-097
 B1-2-098
 B1-2-099
@@ -176,7 +190,7 @@ B1-3-103
 B1-3-104
 B1-3-105 Scrap; Alliance; 2; 1R; Event; [<Discard 1 Alliance Invention>; Draw 2.]
 B1-3-106
-B1-3-107
+B1-3-107 Void Tomb; Spawn; 2; 1R; Monument; [<When a Spawn Unit you control goes to the Grave>; Draw 1]
 B1-3-108
 B1-3-109 Hiveblood Decemator; Spawn; 2; 1R; Offense Unit; 4atk; 1def; Heavy; [<Dawn Phase>; Take 2 life. <Pay 4 life>: Destroy 1 Base + <Destroy 1 Spawn Unit you control>: Draw 1.]
 B1-3-110
@@ -185,7 +199,7 @@ B1-3-112
 B1-4-113
 B1-4-114
 B1-4-115 General Ato, First of the New Alliance; Alliance; 4; 1R; Offense Overlord; atk4; def 2; Heavy; [<Passive> All Alliance Units you control gain +1ATK +1DEF. <Pay 1>: Add 1 Day Counter to an Invention you control.]
-B1-4-116 Hive Mind of The Harvest; Spawn; 2; 1R; Defense Overlord; atk1; def4; Secondary; [<Destroy 1 Spawn Unit you control>: Place 2 Spawn Units, 1 from your hand and 1 from your Grave, to your field, then take damage equal to their combined Cost. ]
+B1-4-116 Hive Mind of The Harvest; Spawn; 2; 1R; Defense Overlord; atk1; def4; Secondary; [<Pay 3, Destroy 1 Spawn Unit you control>: Place 2 Spawn Units, 1 from your hand and 1 from your Grave, to your field, then take damage equal to their combined Cost. ]
 B1-4-117
 B1-4-118
 

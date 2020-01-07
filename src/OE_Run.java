@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  * @since 0.0.1
  */
 public class OE_Run extends JFrame {
-    public static oegrafx.screens.Menu _main;
+    //public static oegrafx.screens.Menu _main;
     public static oetest.OE_dbReaderTEST _test;
     public static void main(String[] args) {
       //_main = new oegrafx.screens.OE_MainMenu();
