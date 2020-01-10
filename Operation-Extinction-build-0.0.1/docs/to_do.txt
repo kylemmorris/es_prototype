@@ -1,0 +1,75 @@
+
+START SMALL =======
+
+- FOCUS ON ONLY MENUS. COMPLETE BASIC UML FOR THESE MENUS.
+
+===================
+
+1: Focus on oegrafx.screens; create the basic layouts for the menus.
+2: Create the card class. Should be in oestruc.cardTools.
+	Card should implement BLOB, to be able to be stored in an SQL database.
+	To find a card, the card ID is paired with the BLOB.
+	The constructor should take the BLOB from the db as its argument
+	Then, it parses thi
+
+oestruc
+|
+|-- cardTools
+|
+|-- db
+|
+|-- oeGridCoord
+|
+|-- oeRPool
+
+package oestruc.cardTools
+public class oeCard extends SerialBlob {
+	String _cardName = "_NOSTR_";	
+	
+	int _cardID = -1;
+	int _cost = -1;
+	int rValue = -1;
+
+	boolean _resourced = false;
+	boolean _dead = false;
+	boolean _discarded = false;
+	
+	oestruc.enumFellowship _fellowship = _NONE_;
+	oestruc.enumType _type = _NONE_;
+	oestruc.oeGridCoord _location = null;
+	oeeffex.Effect _effect = null;
+
+	public oeCard(int cardID, Blob blob){
+		// constructor: needs the card ID and its Blob
+		this._cardID = cardID;
+		// parse the Blob		
+	}
+
+	public void resource(oestruc.oeRpool pool){
+		// resource this card
+		// its RValue is added to the RPool
+		this.resourced = true;
+		pool.addToTotal(this.rValue);
+	}
+
+	public boolean playCard(oestruc.oeRpool, oestruc.
+
+}
+
+===================
+
+Packages:
+
+OECNTRL: The control center for the program; takes parts from all other packages. ActionListeners, Updaters, Handlers, Operators, Linkers.
+
+OEGRAFX: The screens and other graphical structures. Screens, Buttons, Panels, Scroll bar, Textboxes, graphCards (the on-screen representation of the cards).
+-oegrafx.screens
+-oegrafx.buttons
+
+OESTRUC: All the data structures. Cards (and their subclasses), the board array, ImaginaryStack.
+
+OEINTER: Contains the Interpreter object and it's subsidies.
+
+
+
+
