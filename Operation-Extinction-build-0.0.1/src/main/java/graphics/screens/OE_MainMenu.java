@@ -63,7 +63,7 @@ public class OE_MainMenu extends JFrame implements Menu {
 
         // ================================ GENERATE PANELS
         // main panel setup
-        String pathToImage = (_root.concat("/src/main/resources/graphics/mainBackground.jpg"));
+        String pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
         _mainPanel = new OE_GraphicPane(pathToImage);
 
         // panel for main buttons
@@ -91,7 +91,7 @@ public class OE_MainMenu extends JFrame implements Menu {
         _buttonPane.add(_quit, gConst);
 
         // panel for random card
-        pathToImage = (_root.concat("/src/main/resources/graphics/cardTest2.png"));
+        pathToImage = (_root.concat("/graphics/cardTest2.png"));
         _randCardPane = new OE_GraphicPane(pathToImage);
         //_randCardPane = new OE_GraphicPane(pathToImage);
         _randCardPane.setPreferredSize(new Dimension(180, 229));
@@ -99,12 +99,12 @@ public class OE_MainMenu extends JFrame implements Menu {
         // 163 x 229    original size / 4
 
         // panel for game updates
-        pathToImage = (_root.concat("/src/main/resources/graphics/updateTest.png"));
+        pathToImage = (_root.concat("/graphics/updateTest.png"));
         _updatePane = new OE_GraphicPane(pathToImage);
         _updatePane.setPreferredSize(new Dimension(180, 100));
 
         // label for icon
-        pathToImage = (_root.concat("/src/main/resources/graphics/logo.png"));
+        pathToImage = (_root.concat("/graphics/logo.png"));
         _logo = new JLabel(new ImageIcon(pathToImage));
         _logo.setOpaque(false);
 
