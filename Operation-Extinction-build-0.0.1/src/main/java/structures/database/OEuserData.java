@@ -29,11 +29,20 @@ public class OEuserData {
     private Date joinDate;
     private int rank;
 
+    // Constructors
     public OEuserData(String id, String password, int deck_ID, Blob profilePic, int points, Date joinDate, int rank) {
         this.id = id;
         this.password = password;
         this.deck_ID = deck_ID;
         this.profilePic = profilePic;
+        this.points = points;
+        this.joinDate = joinDate;
+        this.rank = rank;
+    }
+    public OEuserData(String id, String password, int deck_ID, int points, Date joinDate, int rank) {
+        this.id = id;
+        this.password = password;
+        this.deck_ID = deck_ID;
         this.points = points;
         this.joinDate = joinDate;
         this.rank = rank;
