@@ -22,7 +22,7 @@ import java.io.File;
 
 public class OE_ScreenConstants {
     public static String _GuserID;
-    public static final String _Gversion = "build 0.0.1";
+    public static final String _Gversion = "SNAPSHOT 0.0.1";
     public static final Dimension _screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int _X = (int)_screenSize.getWidth();
     public static int _Y = (int)_screenSize.getHeight();

@@ -8,6 +8,8 @@
 */
 import javax.swing.JFrame;
 import graphics.screens.OE_MainMenu;
+import graphics.screens.OE_StartMenu;
+
 /**
  * File containing the <code>main</code> method. 
  * 
@@ -16,9 +18,11 @@ import graphics.screens.OE_MainMenu;
  */
 public class OE_Run extends JFrame {
     public static OE_MainMenu _main;
+    public static OE_StartMenu _StartMenu;
     
     // main startup method
     public static void main(String[] args) {
-    	_main = new graphics.screens.OE_MainMenu();
+    	_StartMenu = new OE_StartMenu();
+    	//_main = new graphics.screens.OE_MainMenu();
     }
 }

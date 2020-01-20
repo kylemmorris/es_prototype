@@ -33,8 +33,8 @@ public class OE_dbReader {
     // Current mode
     private int _currentMode = -1;
     // Different modes
-    public static final int USERMODE = 0;
-    public static final int CARDMODE = 1;
+    private final int USERMODE = 0;
+    private final int CARDMODE = 1;
     // Database objects
     private String TARGET;
     private Connection conn = null;
@@ -45,14 +45,13 @@ public class OE_dbReader {
     // ================================ CONSTRUCTORS
     public OE_dbReader() {
     }
-
-    public boolean setMode(int m) {
-        // Setter method for setting what kind of data we are looking for.
-        if(m != USERMODE || m != CARDMODE){
-            return false;
-        }
-        this._currentMode = m;
-        return true;
+    
+    public void initUserMode() {
+    	this._currentMode = USERMODE;
+    }
+    
+    public void initCardMode() {
+    	this._currentMode = CARDMODE;
     }
 
     public boolean setKeyInput(String s){
@@ -90,18 +89,25 @@ public class OE_dbReader {
         // 1. Connect to Database via method
         connectToDb();
         // 2. Get a result (ALWAYS A SINGLE USER)
-        rs = conn.createStatement().executeQuery("SELECT * FROM User WHERE (userid = '" + TARGET + "')");
         System.out.println("Opened Database Successfully");
+        rs = conn.createStatement().executeQuery("SELECT * FROM User WHERE (userid = '" + TARGET + "')");
         // 3. Fetch user information
         String id = rs.getString("userid");
-        System.out.println("Got user id");
+        System.out.println("Got userid");
         String ps = rs.getString("userpass");
+        System.out.println("Got userpass");
         int deckid = rs.getInt("userdeckid");
-        Blob pfp = rs.getBlob("userpfp");
+        System.out.println("Got userdeckid");
+        //Blob pfp = rs.getBlob("userpfp");
+        //System.out.println("Got userpfp");
         int pts = rs.getInt("userpts");
+        System.out.println("Got userpts");
         Date datejoin = rs.getDate("userdatejoin");
+        System.out.println("Got userdatejoin");
         int urank = rs.getInt("userrank");
-        user = new OEuserData(TARGET, ps, deckid, pfp, pts, datejoin, urank);
+        System.out.println("Got userrank");
+        
+        user = new OEuserData(TARGET, ps, deckid, pts, datejoin, urank);
         // 4. Close all connections and return
         rs.close();
         conn.close();

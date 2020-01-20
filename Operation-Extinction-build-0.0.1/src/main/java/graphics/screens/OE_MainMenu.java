@@ -56,10 +56,11 @@ public class OE_MainMenu extends JFrame implements Menu {
         _help = new JButton("HELP");
         _creator = new JButton("CARD CREATOR");
         _quit = new JButton("QUIT");
-        _quit.addActionListener(buttonAction);
         _bugreport = new JButton("BUG");
         _settings = new JButton("SET");
         _profile = new JButton("PRO");
+        // Add action listeners
+        _quit.addActionListener(buttonAction);
 
         // ================================ GENERATE PANELS
         // main panel setup
@@ -71,11 +72,8 @@ public class OE_MainMenu extends JFrame implements Menu {
         GridBagConstraints gConst = new GridBagConstraints();
         _buttonPane.setOpaque(false);
         gConst.weightx = 0.0;
-        //gConst.weighty = 2.0;
         gConst.weighty = _hChisle/360;
-        //gConst.ipadx = 50;
         gConst.ipadx = _wChisle/48;
-        //gConst.ipady = 20;
         gConst.ipady = _hChisle/36;
         gConst.gridx = 0;
         gConst.gridy = 0;
@@ -93,7 +91,6 @@ public class OE_MainMenu extends JFrame implements Menu {
         // panel for random card
         pathToImage = (_root.concat("/graphics/cardTest2.png"));
         _randCardPane = new OE_GraphicPane(pathToImage);
-        //_randCardPane = new OE_GraphicPane(pathToImage);
         _randCardPane.setPreferredSize(new Dimension(180, 229));
         // 652 x 916    original size
         // 163 x 229    original size / 4
@@ -108,15 +105,13 @@ public class OE_MainMenu extends JFrame implements Menu {
         _logo = new JLabel(new ImageIcon(pathToImage));
         _logo.setOpaque(false);
 
-        // panel for the bottom panel
+        // panel for the bottom
         _lowerPane = new JPanel(new GridBagLayout());
         _lowerPane.setOpaque(false);
         _lowerPane.setSize(600, 100);
         GridBagConstraints lConst = new GridBagConstraints();
         lConst.fill = GridBagConstraints.HORIZONTAL;
-        //lConst.weightx = 0.5;
         lConst.weightx = _wChisle/1920;
-        //lConst.ipady = 40;
         lConst.ipady = _hChisle/18;
         _lowerPane.add(_bugreport, lConst);
         lConst.gridx = 1;
@@ -128,20 +123,17 @@ public class OE_MainMenu extends JFrame implements Menu {
         GridBagConstraints mConst = new GridBagConstraints();
         _mainPanel.setLayout(new GridBagLayout());
         mConst.fill = GridBagConstraints.NONE;
-        //mConst.ipady = 40;
         mConst.ipady = _hChisle/18;
         mConst.gridx = 0;
         mConst.gridy = 1;
         mConst.insets = new Insets(_hChisle/8, 0, 0, 0);
         _mainPanel.add(_buttonPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
     
-        //mConst.insets = new Insets(10, 600, 0, 0);
         double h = _wChisle/1.6;
         int dh = (int)h;
         mConst.insets = new Insets(_hChisle/72, dh, 0, 0);
         _mainPanel.add(_randCardPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
 
-        //mConst.insets = new Insets(10, -600, 0, 0);
         mConst.insets = new Insets(_hChisle/72, -dh, 0, 0);
         _mainPanel.add(_updatePane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
 
@@ -149,14 +141,11 @@ public class OE_MainMenu extends JFrame implements Menu {
         mConst.insets = new Insets(0, 0, 0, 0);
         _mainPanel.add(_logo, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
 
-        //mConst.ipady = 30;
         mConst.ipady = _hChisle/24;
-        //mConst.ipadx = 50;
         h = _wChisle/19.2;
         dh = (int)h;
         mConst.ipadx = dh;
         mConst.gridy = 2;
-        //mConst.insets = new Insets(70, -700, 0, 0);
         mConst.insets = new Insets(_hChisle/10 - 2, -_hChisle, 0, 0);
         _mainPanel.add(_lowerPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
 
