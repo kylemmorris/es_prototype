@@ -47,6 +47,13 @@ public class OEuserData {
         this.joinDate = joinDate;
         this.rank = rank;
     }
+    public OEuserData(String id, String password, int deck_ID, int points, int rank) {
+        this.id = id;
+        this.password = password;
+        this.deck_ID = deck_ID;
+        this.points = points;
+        this.rank = rank;
+    }
     /**
      * Gets the Username or Password of the user.
      * <p>Possible inputs: "id", "password".</p>

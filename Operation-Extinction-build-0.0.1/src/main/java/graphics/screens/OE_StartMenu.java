@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.image.BufferedImage;
 
 import graphics.OE_ScreenConstants;
@@ -41,8 +42,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     private JTextField _userField;
     private JPasswordField _passworField;
     // Labels
-    private JLabel _userLabel;
-    private JLabel _passwordLabel;
+    private JLabel _userLabel, _passwordLabel, _welcomeLabel, _newLabel;
     // Database Information
     private OEuserData _tempData;
     private OE_dbReader _reader;
@@ -55,7 +55,12 @@ public class OE_StartMenu extends JFrame implements Menu {
     
     // ================================ ACTION LISETENER
     private ActionListener buttonAction = new ActionListener(){
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
+        	if(e.getSource() == _loginButton) {logIn();}
+        	else if(e.getSource() == _resetButton) {resetFields();}
+        	else if (e.getSource() == _createButton) {accountCreation();}
+        	else {// TODO error handeling
+        	}
         }
     };
     // ================================ CONSTRUCTOR
@@ -63,40 +68,49 @@ public class OE_StartMenu extends JFrame implements Menu {
     	// Create buttons & labels
     	_userLabel = new JLabel("USERNAME");
     	_passwordLabel = new JLabel("PASSWORD");
+    	_welcomeLabel = new JLabel("Existing User? Log in!");
+    	_newLabel = new JLabel("New User? Sign up!");
     	_userField = new JTextField();
     	_passworField = new JPasswordField();
     	_loginButton = new JButton("LOG IN");
     	_resetButton = new JButton("RESET");
     	_createButton = new JButton("CREATE NEW ACCOUNT");
     	_showPassword = new JCheckBox("SHOW PASSWORD");
+    	// Add action listeners
+    	_loginButton.addActionListener(buttonAction);
+    	_resetButton.addActionListener(buttonAction);
+    	_createButton.addActionListener(buttonAction);
     	// Create dbReader
     	_reader = new OE_dbReader();
+    	_reader.initUserMode();
     	
     	// ================================ GENERATE PANELS
     	// main panel setup
     	String pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
     	_mainPanel = new OE_GraphicPane(pathToImage);
-    	GridBagConstraints mConstraints = new GridBagConstraints();
     	_mainPanel.setLayout(null);
-    	//	_mainPanel.setLayout(new GridBagLayout());
-    	// Allignments
-    	mConstraints.fill = GridBagConstraints.NONE;
+    	// Alignments
     	
     	//TODO Finish StartMenu
-    	_userLabel.setBounds(50, 50, 100, 30);
-    	_userField.setBounds(150, 50, 150, 30);
+    	_welcomeLabel.setBounds(100, 20, 200, 30);
+    	_newLabel.setBounds(425, 20, 200, 30);
     	
-    	_passwordLabel.setBounds(50, 110, 100, 30);
-    	_passworField.setBounds(150, 110, 150, 30);
+    	_userLabel.setBounds(50, 70, 100, 30);
+    	_userField.setBounds(150, 70, 150, 30);
     	
-    	_showPassword.setBounds(150, 150, 250, 50);
+    	_passwordLabel.setBounds(50, 130, 100, 30);
+    	_passworField.setBounds(150, 130, 150, 30);
     	
-    	_loginButton.setBounds(50, 220, 100, 30);
-    	_resetButton.setBounds(200, 220, 100, 30);
-    	_createButton.setBounds(400, 110, 200, 30);
+    	_showPassword.setBounds(150, 170, 250, 50);
+    	
+    	_loginButton.setBounds(50, 240, 100, 30);
+    	_resetButton.setBounds(200, 240, 100, 30);
+    	_createButton.setBounds(400, 100, 200, 30);
     	// Add it all to the panel
     	_mainPanel.add(_userLabel);
     	_mainPanel.add(_passwordLabel);
+    	_mainPanel.add(_newLabel);
+    	_mainPanel.add(_welcomeLabel);
     	_mainPanel.add(_userField);
     	_mainPanel.add(_passworField);
     	_mainPanel.add(_showPassword);
@@ -115,7 +129,23 @@ public class OE_StartMenu extends JFrame implements Menu {
         _frame.setLocationRelativeTo(null);
         _frame.setVisible(true);
     }
-    
-    
-    
+    // ================================ BUTTON ACTIONS
+    protected void logIn() {
+    	_reader.setKeyInput(_userField.getText());
+    	try {
+    		_tempData = _reader.userRead();
+    	} catch(SQLException e) {
+    		JOptionPane.showMessageDialog(this, "Username not found.");
+    		return;
+    	}
+    	if(_tempData.getString("password") != _passworField.getText());
+    		JOptionPane.showMessageDialog(this, "Incorrect Username or Password");
+    		return;
+    }
+    protected void resetFields() {
+    	
+    }
+    protected void accountCreation() {
+    	
+    }
 }

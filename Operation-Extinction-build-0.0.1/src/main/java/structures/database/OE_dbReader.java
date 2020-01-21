@@ -102,12 +102,12 @@ public class OE_dbReader {
         //System.out.println("Got userpfp");
         int pts = rs.getInt("userpts");
         System.out.println("Got userpts");
-        Date datejoin = rs.getDate("userdatejoin");
+        //Date datejoin = rs.getDate("userdatejoin");
         System.out.println("Got userdatejoin");
         int urank = rs.getInt("userrank");
         System.out.println("Got userrank");
         
-        user = new OEuserData(TARGET, ps, deckid, pts, datejoin, urank);
+        user = new OEuserData(TARGET, ps, deckid, pts, urank);
         // 4. Close all connections and return
         rs.close();
         conn.close();
