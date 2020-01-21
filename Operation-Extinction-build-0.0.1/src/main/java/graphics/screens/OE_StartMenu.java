@@ -47,7 +47,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     private OEuserData _tempData;
     private OE_dbReader _reader;
     // Constants
-    private Dimension _size = new Dimension(OE_ScreenConstants._X / 4, (OE_ScreenConstants._Y / 4));
+    private Dimension _size = new Dimension(OE_ScreenConstants._X / 3, (OE_ScreenConstants._Y / 3));
     private String _root = new File("").getAbsolutePath();
     private String _tempUsername, _tempPassword;
     private int _wChisle = (int) _size.getWidth();
@@ -67,6 +67,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_passworField = new JPasswordField();
     	_loginButton = new JButton("LOG IN");
     	_resetButton = new JButton("RESET");
+    	_createButton = new JButton("CREATE NEW ACCOUNT");
     	_showPassword = new JCheckBox("SHOW PASSWORD");
     	// Create dbReader
     	_reader = new OE_dbReader();
@@ -81,16 +82,18 @@ public class OE_StartMenu extends JFrame implements Menu {
     	// Allignments
     	mConstraints.fill = GridBagConstraints.NONE;
     	
-    	
-    	_userLabel.setBounds(50, 30, 100, 30);
-    	_userField.setBounds(150, 30, 150, 30);
     	//TODO Finish StartMenu
-    	_passwordLabel.setBounds(50, 120, 100, 30);
-    	_passworField.setBounds(150, 120, 150, 30);
+    	_userLabel.setBounds(50, 50, 100, 30);
+    	_userField.setBounds(150, 50, 150, 30);
     	
-    	_showPassword.setBounds(150, 180, 150, 30);
-    	_loginButton.setBounds(50, 300, 100, 30);
-    	_resetButton.setBounds(200, 300, 100, 30);
+    	_passwordLabel.setBounds(50, 110, 100, 30);
+    	_passworField.setBounds(150, 110, 150, 30);
+    	
+    	_showPassword.setBounds(150, 150, 250, 50);
+    	
+    	_loginButton.setBounds(50, 220, 100, 30);
+    	_resetButton.setBounds(200, 220, 100, 30);
+    	_createButton.setBounds(400, 110, 200, 30);
     	// Add it all to the panel
     	_mainPanel.add(_userLabel);
     	_mainPanel.add(_passwordLabel);
@@ -99,9 +102,10 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel.add(_showPassword);
     	_mainPanel.add(_loginButton);
     	_mainPanel.add(_resetButton);
+    	_mainPanel.add(_createButton);
     	
     	// ================================ GENERATE FRAME & ADD CONTENT
-        _frame = new JFrame("Operation Extinction - " + OE_ScreenConstants._Gversion + " - Main Menu");
+        _frame = new JFrame("Operation Extinction - " + OE_ScreenConstants._Gversion);
         _frame.setMinimumSize(_size);
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);
