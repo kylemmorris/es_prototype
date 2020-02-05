@@ -9,6 +9,7 @@
 package graphics.screens;
 
 import javax.imageio.ImageIO;
+import javax.management.loading.PrivateClassLoader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -139,15 +140,23 @@ public class OE_StartMenu extends JFrame implements Menu {
     		JOptionPane.showMessageDialog(this, "Username not found.");
     		return;
     	}
-    	// If successful, if passwords don't match
-    	if(_tempData.getString("password") != _passworField.getText()) {
+    	// User exists, so passwords must match too.
+    	// Note .getPassword() is a char[] array. So use String instance.
+    	// TODO Scramble Password for security.
+    	String _tempPassString = String.valueOf(_passworField.getPassword());
+    	System.out.println("PASS :::: " + _tempPassString);
+    	if(_tempData.getString("password").equals(_tempPassString)) {
+    		OE_GameConstants._CURRENTUSER_ = _tempData;
+    		new OE_MainMenu();
+    		_frame.dispose();
+    		this.dispose();
+
+    	}
+    	// If not, this can't be a legitimate password
+    	else {
+    		_passworField.setText("");
     		JOptionPane.showMessageDialog(this, "Incorrect Username or Password");
     		return;
-    	}
-    	// Else, this is the correct user
-    	else {
-    			OE_GameConstants._CURRENTUSER_ = _tempData;
-    			new OE_MainMenu();
     	}
     }
     protected void resetFields() {
