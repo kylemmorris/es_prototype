@@ -164,7 +164,7 @@ B1-2-092
 B1-2-093 Morbid Rebirth; Spawn; 3; 1R; Event; [Place 2 Spawn Units from your Grave to your field for this turn.]
 B1-2-094
 B1-2-095
-B1-2-096 Fusion Brain of the Harvest; Spawn; 7; 1R; Monument; [<Enters>; Place Spawn Units (1ATK/1DEF) in your empty zones. <Send any number of Spawn Units you control to the Grave>: Destroy all your opponent's Units with ATK or DEF greater than or equal to the total ATK or DEF of the Units you sent.]
+B1-2-096 Fusion Cell of the Harvest; Spawn; 7; 1R; Monument; [<Enters>; Place Spawn Units (1ATK/1DEF) in your empty zones. <Send any number of Spawn Units you control to the Grave>: Destroy all your opponent's Units with ATK or DEF greater than or equal to the total ATK or DEF of the Units you sent.]
 B1-2-097
 B1-2-098
 B1-2-099 Infiltrator of the Void; Genesis; 3; 1R; Offense Unit; Envoy; atk4; def1; Secondary; [<Passive> This can attack the turn it enters. <The opponent has no DEF Units in a column>: Play this card into that column for free. <Counter-Attack>; Return this to the hand.]

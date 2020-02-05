@@ -20,6 +20,7 @@ import java.awt.image.BufferedImage;
 
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
+import structures.OE_GameConstants;
 import structures.database.OE_dbReader;
 /**
  * The starting menu, where the user must log in to access.
@@ -90,8 +91,6 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel = new OE_GraphicPane(pathToImage);
     	_mainPanel.setLayout(null);
     	// Alignments
-    	
-    	//TODO Finish StartMenu
     	_welcomeLabel.setBounds(100, 20, 200, 30);
     	_newLabel.setBounds(425, 20, 200, 30);
     	
@@ -131,21 +130,40 @@ public class OE_StartMenu extends JFrame implements Menu {
     }
     // ================================ BUTTON ACTIONS
     protected void logIn() {
+    	// Set input to the username field
     	_reader.setKeyInput(_userField.getText());
     	try {
+    		//attempt to get the user's info
     		_tempData = _reader.userRead();
     	} catch(SQLException e) {
     		JOptionPane.showMessageDialog(this, "Username not found.");
     		return;
     	}
-    	if(_tempData.getString("password") != _passworField.getText());
+    	// If successful, if passwords don't match
+    	if(_tempData.getString("password") != _passworField.getText()) {
     		JOptionPane.showMessageDialog(this, "Incorrect Username or Password");
     		return;
+    	}
+    	// Else, this is the correct user
+    	else {
+    			OE_GameConstants._CURRENTUSER_ = _tempData;
+    			new OE_MainMenu();
+    	}
     }
     protected void resetFields() {
+    	_userField.setText("");
+    	_passworField.setText("");
     	
     }
     protected void accountCreation() {
     	
     }
 }
+    
+    
+    
+    
+    
+    
+    
+    
