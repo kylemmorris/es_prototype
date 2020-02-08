@@ -7,8 +7,8 @@
 *
 */
 import javax.swing.JFrame;
-import graphics.screens.OE_MainMenu;
 import graphics.screens.OE_StartMenu;
+import structures.OE_GameConstants;
 
 /**
  * File containing the <code>main</code> method. 
@@ -17,12 +17,8 @@ import graphics.screens.OE_StartMenu;
  * @since 0.0.1
  */
 public class OE_Run extends JFrame {
-    public static OE_MainMenu _main;
-    public static OE_StartMenu _StartMenu;
-    
     // main startup method
     public static void main(String[] args) {
-    	_StartMenu = new OE_StartMenu();
-    	//_main = new graphics.screens.OE_MainMenu();
+    	structures.OE_GameConstants._CURRENTMENU_ = new OE_StartMenu();
     }
 }

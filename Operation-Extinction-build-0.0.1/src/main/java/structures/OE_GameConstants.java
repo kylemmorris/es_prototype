@@ -7,7 +7,8 @@
 *
 */
 package structures;
-
+import graphics.screens.Menu;
+import structures.database.OEuserData;
 
 
 /**
@@ -31,5 +32,10 @@ public class OE_GameConstants {
             this.y = Y;
         }
     }
+    // Current User
+    public static OEuserData _CURRENTUSER_;
+    
+    // Current Menu
+    public static Menu _CURRENTMENU_;
 
 }

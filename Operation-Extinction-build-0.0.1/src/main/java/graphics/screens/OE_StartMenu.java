@@ -143,11 +143,13 @@ public class OE_StartMenu extends JFrame implements Menu {
     	// User exists, so passwords must match too.
     	// Note .getPassword() is a char[] array. So use String instance.
     	// TODO Scramble Password for security.
-    	String _tempPassString = String.valueOf(_passworField.getPassword());
+		String _tempPassString = String.valueOf(_passworField.getPassword());
     	System.out.println("PASS :::: " + _tempPassString);
     	if(_tempData.getString("password").equals(_tempPassString)) {
+    		// Update all constants
     		OE_GameConstants._CURRENTUSER_ = _tempData;
-    		new OE_MainMenu();
+    		OE_ScreenConstants._GuserID = _tempData.getString("id");
+    		OE_GameConstants._CURRENTMENU_ = new OE_MainMenu();
     		_frame.dispose();
     		this.dispose();
 
