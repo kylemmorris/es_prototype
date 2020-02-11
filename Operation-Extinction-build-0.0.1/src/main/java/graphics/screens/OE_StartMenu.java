@@ -61,6 +61,7 @@ public class OE_StartMenu extends JFrame implements Menu {
         	if(e.getSource() == _loginButton) {logIn();}
         	else if(e.getSource() == _resetButton) {resetFields();}
         	else if (e.getSource() == _createButton) {accountCreation();}
+        	else if (e.getSource() == _showPassword) {showPass();}
         	else {// TODO error handeling
         	}
         }
@@ -82,6 +83,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_loginButton.addActionListener(buttonAction);
     	_resetButton.addActionListener(buttonAction);
     	_createButton.addActionListener(buttonAction);
+    	_showPassword.addActionListener(buttonAction);
     	// Create dbReader
     	_reader = new OE_dbReader();
     	_reader.initUserMode();
@@ -165,6 +167,10 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_userField.setText("");
     	_passworField.setText("");
     	
+    }
+    protected void showPass() {
+    	if(_showPassword.isSelected()) _passworField.setEchoChar((char) 0);
+    	else _passworField.setEchoChar('*');
     }
     protected void accountCreation() {
     	
