@@ -1,0 +1,8 @@
+@ Entire code, without comments. @
+
+SIG= General Ato, First of the New Alliance; Alliance; 4; 1R; Offense Leader; Human; atk4; def2; Heavy;.
+
+START(2).
+&1[ <PASSIVE> ALL YOUR ALLIANCE UNIT GAIN 1 ATK AND 1 DEF. ].
+&2[ <PAY 1> : YOUR INVENTION GAIN 1 DAY. ].
+END.
