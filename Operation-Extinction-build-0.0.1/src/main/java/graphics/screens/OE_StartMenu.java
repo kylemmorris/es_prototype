@@ -8,16 +8,12 @@
 */
 package graphics.screens;
 
-import javax.imageio.ImageIO;
-import javax.management.loading.PrivateClassLoader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.awt.image.BufferedImage;
 
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
@@ -94,6 +90,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel = new OE_GraphicPane(pathToImage);
     	_mainPanel.setLayout(null);
     	// Alignments
+    	// TODO Make alignments generic
     	_welcomeLabel.setBounds(100, 20, 200, 30);
     	_newLabel.setBounds(425, 20, 200, 30);
     	
@@ -176,11 +173,3 @@ public class OE_StartMenu extends JFrame implements Menu {
     	
     }
 }
-    
-    
-    
-    
-    
-    
-    
-    
