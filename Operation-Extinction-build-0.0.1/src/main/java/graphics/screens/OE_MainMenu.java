@@ -35,6 +35,7 @@ public class OE_MainMenu extends JFrame implements Menu {
     // Labels
     private JLabel _logo;
     // Constants
+    private String pathToImage;
     private Dimension _size = new Dimension(OE_ScreenConstants._X / 2, 2 * (OE_ScreenConstants._Y / 3));
     private String _root = new File("").getAbsolutePath();
     private int _wChisle = (int) _size.getWidth();
@@ -64,7 +65,7 @@ public class OE_MainMenu extends JFrame implements Menu {
 
         // ================================ GENERATE PANELS
         // main panel setup
-        String pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
+        pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
         _mainPanel = new OE_GraphicPane(pathToImage);
 
         // panel for main buttons
