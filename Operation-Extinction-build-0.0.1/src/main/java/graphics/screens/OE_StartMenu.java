@@ -45,6 +45,8 @@ public class OE_StartMenu extends JFrame implements Menu {
     private OEuserData _tempData;
     private OE_dbReader _reader;
     // Constants
+    private String pathToImage;
+    private String _signature = "Operation Extinction - " + OE_ScreenConstants._Gversion;
     private Dimension _size = new Dimension(OE_ScreenConstants._X / 3, (OE_ScreenConstants._Y / 3));
     private String _root = new File("").getAbsolutePath();
     private String _tempUsername, _tempPassword;
@@ -81,12 +83,10 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_createButton.addActionListener(buttonAction);
     	_showPassword.addActionListener(buttonAction);
     	// Create dbReader
-    	_reader = new OE_dbReader();
-    	_reader.initUserMode();
-    	
+    	_reader = new OE_dbReader("readUser");
     	// ================================ GENERATE PANELS
     	// main panel setup
-    	String pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
+    	pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
     	_mainPanel = new OE_GraphicPane(pathToImage);
     	_mainPanel.setLayout(null);
     	// Alignments
@@ -118,7 +118,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel.add(_createButton);
     	
     	// ================================ GENERATE FRAME & ADD CONTENT
-        _frame = new JFrame("Operation Extinction - " + OE_ScreenConstants._Gversion);
+        _frame = new JFrame(_signature);
         _frame.setMinimumSize(_size);
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);
@@ -170,6 +170,16 @@ public class OE_StartMenu extends JFrame implements Menu {
     	else _passworField.setEchoChar('*');
     }
     protected void accountCreation() {
-    	
+    	OE_GameConstants._CURRENTMENU_ = new OE_AccountCreationMenu();
+    	_frame.dispose();
+    	this.dispose();
     }
 }
+    
+    
+    
+    
+    
+    
+    
+    

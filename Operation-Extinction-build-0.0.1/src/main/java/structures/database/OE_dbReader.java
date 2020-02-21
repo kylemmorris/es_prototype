@@ -4,8 +4,12 @@
 * @author Kyle M. Morris
 * @version 0.0.1
 *
-*
+* Database reader process. 
+* Will be adding thread support
+* 
 */
+
+// TODO Implement thread support?
 package structures.database;
 
 import java.sql.Blob;
@@ -15,6 +19,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import structures.OE_ERROR_EXCEPTION;
 
 /**
  * A cursor object implementation that sends queries
@@ -43,17 +48,20 @@ public class OE_dbReader {
     private OEabstractCard card = null;
     private OEuserData user = null;
     // ================================ CONSTRUCTORS
-    public OE_dbReader() {
+    /**
+     * Default constructor -- 
+     * Acceptable inputs include: "readUser" and "readCard".
+     */
+    public OE_dbReader(String command) {
+    	switch(command) {
+    	case "readUser":
+    		this._currentMode = USERMODE;
+    	case "readCard":
+    		this._currentMode = CARDMODE;
+    	default:
+    		new OE_ERROR_EXCEPTION("OE_dbReader command not found");
+    	}
     }
-    
-    public void initUserMode() {
-    	this._currentMode = USERMODE;
-    }
-    
-    public void initCardMode() {
-    	this._currentMode = CARDMODE;
-    }
-
     public boolean setKeyInput(String s){
         // To find a user, the input is a string by default (string ID is primary key).
         // For card, however, the input string must be parsed.
@@ -93,19 +101,19 @@ public class OE_dbReader {
         rs = conn.createStatement().executeQuery("SELECT * FROM User WHERE (userid = '" + TARGET + "')");
         // 3. Fetch user information
         String id = rs.getString("userid");
-        System.out.println("Got userid");
+        System.out.println("userid = " + id);
         String ps = rs.getString("userpass");
-        System.out.println("Got userpass");
+        System.out.println("userpass = " + ps);
         int deckid = rs.getInt("userdeckid");
-        System.out.println("Got userdeckid");
+        System.out.println("userdeckid = " + deckid);
         //Blob pfp = rs.getBlob("userpfp");
         //System.out.println("Got userpfp");
         int pts = rs.getInt("userpts");
-        System.out.println("Got userpts");
+        System.out.println("userpts = " + pts);
         //Date datejoin = rs.getDate("userdatejoin");
-        System.out.println("Got userdatejoin");
+        //System.out.println("Got userdatejoin");
         int urank = rs.getInt("userrank");
-        System.out.println("Got userrank");
+        System.out.println("userrank = " + urank);
         
         user = new OEuserData(TARGET, ps, deckid, pts, urank);
         // 4. Close all connections and return

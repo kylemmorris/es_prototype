@@ -11,8 +11,7 @@ public class OE_dbReaderTEST {
     }
     @Test
     public void dbReaderTEST() {
-        _link = new OE_dbReader();
-        _link.initUserMode();
+        _link = new OE_dbReader("readUser");
         assert(_link.setKeyInput("DEV"));
         
         try{
