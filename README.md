@@ -5,7 +5,7 @@
 
 A new take on digital card games, take on the role of Military Leaders in a sci-fi universe.
 
-## Features:
+## (Planned) Features:
 
 <p> Combining traditional card games with the strategy of chess, card placement matters.</p>
 
