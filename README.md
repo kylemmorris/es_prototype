@@ -1,4 +1,16 @@
-# oe_ver_0.0.1
-A new take on card games -- OE is an ambitious project, featuring full-programmable cards.
+# Operation Extinction TCG
 
-README currently in progress....
+## Version 0.0.1 -- Build 1.
+## CURRENTLY IN DEVELOPMENT
+
+A new take on digital card games, take on the role of Military Leaders in a sci-fi universe.
+
+## Features:
+
+<p> Combining traditional card games with the strategy of chess, card placement matters.<\p>
+
+<p> No micro-transaction nonsense - Instant access to every card in the game.<\p>
+
+<p> A unique scripting system - Create your own cards in custom modes.<\p>
+
+<p> LAN support - Play with friends!<\p>
