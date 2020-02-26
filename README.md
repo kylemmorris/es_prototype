@@ -7,10 +7,10 @@ A new take on digital card games, take on the role of Military Leaders in a sci-
 
 ## Features:
 
-<p> Combining traditional card games with the strategy of chess, card placement matters.<\p>
+<p> Combining traditional card games with the strategy of chess, card placement matters.</p>
 
-<p> No micro-transaction nonsense - Instant access to every card in the game.<\p>
+<p> No micro-transaction nonsense - Instant access to every card in the game.</p>
 
-<p> A unique scripting system - Create your own cards in custom modes.<\p>
+<p> A unique scripting system - Create your own cards in custom modes.</p>
 
-<p> LAN support - Play with friends!<\p>
+<p> LAN support - Play with friends!</p>
