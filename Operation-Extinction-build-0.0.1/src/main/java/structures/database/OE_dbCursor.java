@@ -93,11 +93,13 @@ public class OE_dbCursor {
         }
     }
 
-    public OEabstractCard cardRead(){
+    public OEabstractCard cardRead() {
+    	assert(this._currentMode == Mode.READCARD);
         return card;
     }
 
     public OEuserData userRead() throws SQLException {
+    	assert(this._currentMode == Mode.READUSER);
         // 1. Connect to Database via method
         connectToDb();
         // 2. Get a result (ALWAYS A SINGLE USER)
@@ -125,10 +127,12 @@ public class OE_dbCursor {
         conn.close();
         return user;
     }
-	
+
     // TODO implement Runnable in the future for multi-threading
     public void kill(){}
     public void run(){}
+    
+    
 }
 
 
