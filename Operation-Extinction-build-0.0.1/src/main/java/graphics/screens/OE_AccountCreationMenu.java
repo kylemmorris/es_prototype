@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
 import structures.OE_GameConstants;
-import structures.database.OE_dbReader;
+import structures.database.OE_dbCursor;
 
 public class OE_AccountCreationMenu implements Menu {
 	// Frame
@@ -43,7 +43,7 @@ public class OE_AccountCreationMenu implements Menu {
     private String pathToImage;
     // Data
     private OEuserData _tempData;
-    private OE_dbReader _reader;
+    private OE_dbCursor _Cursor;
     
     private ActionListener buttonAction = new ActionListener(){
         public void actionPerformed(ActionEvent e) {
@@ -72,7 +72,7 @@ public class OE_AccountCreationMenu implements Menu {
 		_createButton.addActionListener(buttonAction);
 		_resetButton.addActionListener(buttonAction);
 		// Create dbReader and dbWriter
-		_reader = new OE_dbReader("readUser");
+		_Cursor = new OE_dbCursor("read", "user");
 		
 		// =============================== GENERATE PANELS
 		// =============================== GENERATE FRAME, ADD CONTENT

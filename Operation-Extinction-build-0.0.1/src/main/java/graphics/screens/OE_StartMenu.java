@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
 import structures.OE_GameConstants;
-import structures.database.OE_dbReader;
+import structures.database.OE_dbCursor;
 /**
  * The starting menu, where the user must log in to access.
  * <p> Implements the <code>Menu</code> interface.</p>
@@ -43,7 +43,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     private JLabel _userLabel, _passwordLabel, _welcomeLabel, _newLabel;
     // Database Information
     private OEuserData _tempData;
-    private OE_dbReader _reader;
+    private OE_dbCursor _Cursor;
     // Constants
     private String pathToImage;
     private String _signature = "Operation Extinction - " + OE_ScreenConstants._Gversion;
@@ -83,7 +83,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_createButton.addActionListener(buttonAction);
     	_showPassword.addActionListener(buttonAction);
     	// Create dbReader
-    	_reader = new OE_dbReader("readUser");
+    	_Cursor = new OE_dbCursor("read", "user");
     	// ================================ GENERATE PANELS
     	// main panel setup
     	pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
@@ -131,10 +131,10 @@ public class OE_StartMenu extends JFrame implements Menu {
     // ================================ BUTTON ACTIONS
     protected void logIn() {
     	// Set input to the username field
-    	_reader.setKeyInput(_userField.getText());
+    	_Cursor.setInput(_userField.getText());
     	try {
     		//attempt to get the user's info
-    		_tempData = _reader.userRead();
+    		_tempData = _Cursor.userRead();
     	} catch(SQLException e) {
     		JOptionPane.showMessageDialog(this, "Username not found.");
     		return;

@@ -4,12 +4,8 @@
 * @author Kyle M. Morris
 * @version 0.0.1
 *
-* Database reader process. 
-* Will be adding thread support
-* 
+*
 */
-
-// TODO Implement thread support?
 package structures.database;
 
 import java.sql.Blob;
@@ -19,64 +15,72 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import structures.OE_ERROR_EXCEPTION;
 
 /**
- * A cursor object implementation that sends queries
- * to the main database and returns requested data in the form
- * of an <code>OE_dbData</code> object. If the query fails, it will
- * throw <code>SQLException</code>.
- * The linker has multiple modes that must be set
- * before querying.
+ * A cursor object implementation that updates the main database.
+ * At this point, no OE_dbReaders are allowed to execute, thus
+ * the code is synchronized.
+ * Only every returns boolean for whether it was successful or not.
  * <p>Implements <code>Runnable</code> for multi-threading (future).</p>
  * @author Kyle M. Morris
  * @since 0.0.1
- * @throws SQLException
- * @return OEabstractCard, OEuserData
+ * @return boolean
+ * @see OE_dbReader
+ *
  */
-public class OE_dbReader {
-    // Current mode
-    private int _currentMode = -1;
-    // Different modes
-    private final int USERMODE = 0;
-    private final int CARDMODE = 1;
-    // Database objects
-    private String TARGET;
-    private Connection conn = null;
-    private ResultSet rs = null;
-    // Returns
-    private OEabstractCard card = null;
-    private OEuserData user = null;
-    // ================================ CONSTRUCTORS
-    /**
-     * Default constructor -- 
-     * Acceptable inputs include: "readUser" and "readCard".
-     */
-    public OE_dbReader(String command) {
-    	switch(command) {
-    	case "readUser":
-    		this._currentMode = USERMODE;
-    	case "readCard":
-    		this._currentMode = CARDMODE;
-    	default:
-    		new OE_ERROR_EXCEPTION("OE_dbReader command not found");
-    	}
-    }
-    public boolean setKeyInput(String s){
-        // To find a user, the input is a string by default (string ID is primary key).
-        // For card, however, the input string must be parsed.
-        
-        // EXAMPLE:
-        //      USERMODE:   "KyletheGameGuy"
-        //      CARDMODE:   "B1-0-0001" -> [oedb.B1Cards.0001].getSignature()
-
-        if(_currentMode == USERMODE || _currentMode == CARDMODE) {
-            TARGET = s;
-            return true;
-        }
-        return false;
-    }
-
+public class OE_dbCursor {
+	// Different modes the cursor can take
+	private enum Mode { READUSER, READCARD, WRITEUSER, WRITECARD };
+	// Internal objects
+	private Mode _currentMode = null;
+	private String TARGET;
+	private Connection conn = null;
+	private ResultSet rs = null;
+	// Return objects
+	private OEabstractCard card;
+	private OEuserData user;
+	// ================================ CONSTRUCTORS
+	/**
+	 * The default constructor.
+	 * Acceptable inputs include "read", "write", "user", and "card".
+	 * If you use this constructor, you MUST have 2 parameters.
+	 * @param String type
+	 * @param String target
+	 */
+	public OE_dbCursor(String type, String target) {
+		switch(type + target) {
+		case "readuser":
+			this._currentMode = Mode.READUSER;
+		case "readcard":
+			this._currentMode = Mode.READCARD;
+		case "writeuser":
+			this._currentMode = Mode.WRITEUSER;
+		case "writecard":
+			this._currentMode = Mode.WRITECARD;
+		default:
+			new OE_ERROR_EXCEPTION("OE_dbCursor: " + type + " " + target + " is unknown cursor type.");
+		}
+	}
+	/**
+	 * The generic constructor.
+	 * The cursor's mode will be unknown, but can be changed 
+	 * with setMode().
+	 * Not recommended, only for unusual circumstances.
+	 */
+	public OE_dbCursor() {
+		
+	}
+	
+	public boolean setInput(String input) {
+		if(this._currentMode != null) {
+			this.TARGET = input;
+			return true;
+		}
+		return false;
+	}
+	
     private void connectToDb() {
         try{
             Class.forName("org.sqlite.JDBC");
@@ -121,8 +125,24 @@ public class OE_dbReader {
         conn.close();
         return user;
     }
-
+	
     // TODO implement Runnable in the future for multi-threading
     public void kill(){}
     public void run(){}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
