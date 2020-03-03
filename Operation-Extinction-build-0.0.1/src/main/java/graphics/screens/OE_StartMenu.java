@@ -82,7 +82,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_resetButton.addActionListener(buttonAction);
     	_createButton.addActionListener(buttonAction);
     	_showPassword.addActionListener(buttonAction);
-    	// Create dbReader
+    	// Create dbCursor
     	_Cursor = new OE_dbCursor("read", "user");
     	// ================================ GENERATE PANELS
     	// main panel setup

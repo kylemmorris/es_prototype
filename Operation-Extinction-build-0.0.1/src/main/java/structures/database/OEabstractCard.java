@@ -11,6 +11,8 @@ package structures.database;
 import java.io.*;
 import java.sql.*;
 
+import structures.OE_Data;
+
 /**
  * The OE card. Contains attributes that all cards share. Dynamically
  * created at runtime to store card data from the database.
@@ -20,5 +22,15 @@ import java.sql.*;
  * @since 0.0.1
  * @see OEinterpreter
  */
-public class OEabstractCard {
+public class OEabstractCard implements OE_Data {
+    public String getSig() {
+    	return "okay";
+    }
+    
+    public String getHashedSig() {
+    	return "hgb";
+    }
+    
+    public void transmit() {
+    }
 }

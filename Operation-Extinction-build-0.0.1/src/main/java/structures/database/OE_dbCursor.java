@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import structures.OE_Data;
 import structures.OE_ERROR_EXCEPTION;
 
 /**
@@ -71,6 +72,10 @@ public class OE_dbCursor {
 	 */
 	public OE_dbCursor() {
 		
+	}
+	
+	public void setMode(Mode m) {
+		this._currentMode = m;
 	}
 	
 	public boolean setInput(String input) {

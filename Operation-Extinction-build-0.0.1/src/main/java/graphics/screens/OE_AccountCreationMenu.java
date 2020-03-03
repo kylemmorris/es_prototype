@@ -71,8 +71,8 @@ public class OE_AccountCreationMenu implements Menu {
 		_backButton.addActionListener(buttonAction);
 		_createButton.addActionListener(buttonAction);
 		_resetButton.addActionListener(buttonAction);
-		// Create dbReader and dbWriter
-		_Cursor = new OE_dbCursor("read", "user");
+		// Create dbCursor
+		_Cursor = new OE_dbCursor();
 		
 		// =============================== GENERATE PANELS
 		// =============================== GENERATE FRAME, ADD CONTENT

@@ -11,6 +11,8 @@ package structures.database;
 import java.io.*;
 import java.sql.*;
 
+import structures.OE_Data;
+
 /**
  * A small container object for the current user's specific data.
  * <p>Contains: getString(), getInt(), getProfilePic(), and getDateJoined().</p>
@@ -19,7 +21,7 @@ import java.sql.*;
  * @since 0.0.1
  * 
  */
-public class OEuserData {
+public class OEuserData implements OE_Data {
     // TODO Uses hashing for private material. Will be thread-safe.
     private String id;
     private String password;
@@ -92,5 +94,16 @@ public class OEuserData {
      */
     public Date getDateJoined(){
         return this.joinDate;
+    }
+    
+    public String getSig() {
+    	return "okay";
+    }
+    
+    public String getHashedSig() {
+    	return "hgb";
+    }
+    
+    public void transmit() {
     }
 }
