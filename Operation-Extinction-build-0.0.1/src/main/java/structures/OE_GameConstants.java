@@ -18,7 +18,7 @@ import structures.database.OEuserData;
  * @see something
  * 
  */
-public class OE_GameConstants {
+public final class OE_GameConstants {
     // Enumerations
     public enum Fellowship {ALLIANCE, SPAWN, GENESIS, REFLECTION, OCCULT, BEHELD};
     public enum Type {OVERLORD, UNIT, WEAPON, EVENT, INVENTION, MONUMENT, BASE, SURPLUS};

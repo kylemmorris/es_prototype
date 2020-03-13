@@ -20,7 +20,7 @@ import java.io.File;
  * @since 0.0.1
  */
 
-public class OE_ScreenConstants {
+public final class OE_ScreenConstants {
     public static String _GuserID;
     public static final String _Gversion = "SNAPSHOT 0.0.1";
     public static final Dimension _screenSize = Toolkit.getDefaultToolkit().getScreenSize();
