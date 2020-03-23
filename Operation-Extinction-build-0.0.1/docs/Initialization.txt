@@ -1,0 +1,9 @@
+ECLIPSE INIT:
+
+- JUnit
+- Maven
+- GitHub support (connected to my github)
+
+VERSIONS:
+
+-

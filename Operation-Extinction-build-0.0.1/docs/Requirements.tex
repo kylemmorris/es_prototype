@@ -1,0 +1,404 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Software Requirement Specification},    % title
+    pdfauthor={Jean-Philippe Eisenbarth},                     % author
+    pdfsubject={TeX and LaTeX},                        % subject of the document
+    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{0.0.1}
+\def\myname{Kyle M. Morris }
+\def\orgname{\textit{MorriSoftware} }
+\def\bookmrk{LEFT OFF HERE}
+\date{}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\begin{document}
+
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
+        \vspace{1.0cm}
+        for\\
+        \vspace{1.0cm}
+        Operation Extinction TCG\\
+        \vspace{1.9cm}
+        \LARGE{Version \myversion}\\
+        \vspace{1.9cm}
+        Prepared by \myname\\
+        \vspace{1.9cm}
+        \orgname\\
+        \vspace{1.9cm}
+        \today\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+
+\chapter*{Revision History}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+	    Name & Date & Reason For Changes & Version\\
+        \hline
+	    \myname & \today & Init & \myversion\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\chapter{Introduction}
+
+\section{Purpose}
+
+This requirements specification is descriping \textbf{Opeartion Extinction TCG version \myversion}. This SRS will focus on the entire system, including all subsystems. There will be comprehensive documentation of all the subsystems.
+
+\section{Document Conventions}
+
+\begin{enumerate}
+	\item "OETCG" refers to the product itself.
+	\item \textcolor{blue}{Blue words} will refer to specific packages, and will be given an extension.
+	\item \textcolor{red}{Red words} will refer to specific classes.
+	\item \textcolor{purple}{Purple words} will represent system modules.
+	\item \textcolor{brown}{Brown words} will represent different sections of this SRS.
+\end{enumerate}
+
+\section{Intended Audience and Reading Suggestions}
+
+The following audiences will find this SRS useful:
+
+\begin{enumerate}
+	\item \textbf{Developers:} This will help developers remain up to date with requirements for the implementation of OETCG, as well as key benchmarks to be  achieved.
+	\item \textbf{Users:} Any curious user will find this SRS interesting, especially the section on \textcolor{brown}{OEff Code}, though there is a manual for that.
+	\item \textbf{Testers:} Anyone testing this software should become accustomed to this document, as it lays out precisely what is to be implemented and how.
+	\item \textbf{Documentation Writers:} This should be obvious.
+\end{enumerate}
+
+To be understood correctly, a beginner should start with the \textcolor{brown}{Overview} secton of this document. From there, they can explore what they are most interested in.
+
+\section{Project Scope}
+OETCG is a digital trading card game (TCG) with the sole purpose of entertainment. 
+In this game, players take on the role of Leaders in whatever futuristic galactic empire they choose. They will embark on an epic journey to build the most powerful decks of cards, and strategically dominate other players.
+
+New booster sets will be released every few months, with new cards for players to experiment with. The goal is to create a fun, positive community full of people that love the gameplay, lore, and strategy that OETCG provides.
+
+To \orgname, OETCG will be a small start-up project that will use agile techniqus and good PR to accumulate a fanbase, with the largest source of income being buying the game itself. Multiplayer capilities and such will not be implemented in early builds, due to team size.
+
+Dependencies will be an issue -- Public licenses will have to be evaluated carefully to conform with the law (see \textcolor{brown}{2.7 Assumptions and Dependencies}).
+
+\section{References}
+
+This SRS will refer to the following documents/systems:
+\begin{enumerate}
+	\item \textit{OE Scripting Manual} -- Kyle M. Morris, ver 1.0.
+	\item \textit{Java SE Documentation} -- Oracle, ver 13.0.
+	\item \textit{Maven} -- Apache.
+	\item \textit{Umbrello} -- KDE.
+\end{enumerate}
+
+
+\chapter{Overall Description}
+
+\section{Product Perspective}
+This SRS describes the system in its entirety, including all of its subsystems.
+The following is a simplified UML Component Diagram for OETCG, with basic interconnections.
+It is implemented by the basic Maven project structure
+
+\section{Product Functions}
+This section will describe the functions that OETCG must perform in an abstract way. For a more in-depth description, see \textcolor{brown}{Section 3: External Interface Requirements}.
+
+There will be 5 subcatergories of functionality: \textbf{User, Graphical, Structural, Network, and Game Engine.}
+\begin{itemize}
+	\item 
+	At the \textbf{User} level, OETCG shall:
+\begin{itemize}
+	\item Maintain data natively, on a SQLite database.
+	\item Adequetly protect "sensitive" information about the user, though the scope is small.
+	\item Provide easy-to-use features for the user to change aspects about themselves in-game.
+	\item Provide plenty of resources for the user to explore OETCG in-depth (whether it be story, scripting, a website, updates, etc).
+\end{itemize}
+	\item
+	At the \textbf{Graphical} level, OETCG shall:
+\begin{itemize}
+	\item Require very few resources.
+	\item Maintain consistency on every possble platform.
+	\item Be easy on the eyes and simplistic (buttons, drop downs, etc).
+	\item Be somewhat customizable by the user.
+\end{itemize}
+	\item
+	At the \textbf{Structural} level, OETCG shall:
+	\begin{itemize}
+	\item Maintain excellent file structure.
+	\item Optimize the database management system.
+	\item Enable auto-updating.
+\end{itemize}
+	\item
+	At the \textbf{Network} level, OETCG shall:
+	\begin{itemize}
+	\item Provide basic LAN support for 2 players.
+	\item Check that both players share the same version.
+\end{itemize}
+	\item
+	At the \textbf{Game Engine} level, OETCG shall:
+	\begin{itemize}
+	\item Be wary of the edge-cases.
+	\item Optimize game flow.
+	\item Follow the scripting protocol exactly.
+	\item Provide a simple interface without being too boring.
+\end{itemize}
+\end{itemize}
+
+\textbf{The following is a high-level UML of these major requirements, as well as how they relate:}
+
+
+\section{User Classes and Characteristics}
+OETCG will be used by a few catergories of "users", some have higher priorty than others.
+In the following, we will describe the name of said class, priority and how OETCG will handle/satisfy these users.
+
+\begin{itemize}
+	\item \textbf{The Casual User (Medium Priority)}: Casual Users jump on the game occasionally, only to play with friends or just when they're bored. OETCG shall be an easy game to jump into, and only extremely in-depth if the user chooses to go that route. OETCG, to these Users, is more of a "time killer", so some "quality of life" functions will be implemented, but they won't be a primary goal.
+	\item \textbf{The In-Depth User (High Priority)}: In-Depth users explore as much of the game as possible. This can be from lore to in-game bugs, even to other community-made content, external to \orgname. This user demands constant gratification, whether it be from new content to big updates. These are the fanatics that will spread the word, so they must be satisfied to the best of our ability, but also the for betterment of every other User Class.
+	\item \textbf{The Competitive User (High Priority)}: Competitive Users will play OETCG religiously for training, organize user-driven events, and stay up-to-date with the latest updates and added content, while not paying much attention to story/graphics, etc. A competitive scene is extremely important to any card game, both in private and public image, so OETCG must satisfy these users with constant, non-stale updates at a decent pace, but not too fast. Competitive issues, such as balancing, must be on the top of the priority list; the worse the game is, the less people will want to play, and thus it will die.
+	\item \textbf{The Social User (Low Priority)}: Social Users are those who rarely play the game (sometimes not owning it), instead clinging onto the community itself, for the better or the worse. We must be careful in disregarding these Users, as they may or may not be mixed with the Casual Users. OETCG shall provide adequate social features, though it is not the main demographic.
+	\item \textbf{The Iffy/Returning User (High Priority)}: These Users are on the fence on whether or not to purchase OETCG. This class may have the highest priorty of all, as this how the OETCG will expand and grow. Thus, social media must be taken advantage of, relying on word-of-mouth advertisement. We want people to see \orgname as a nice developer that is not greedy, and is in it for the customer experience.
+	\item \textbf{The Technical User (Medium Priority)}: These Users focus on the technical aspects of the software, and wish to imporve it via mods or reaching out. Currently, there are no plans to go open-source, however we must have excellent qualtiy of software to make sure these Users don't steer other Users away, and of course to have a quality product.
+\end{itemize}
+
+\section{Operating Environment}
+OETCG will be written in Java SE, version 13, and will use a Maven structure. Thus, the software should be able to run on PC, Linux and Mac via Steam. Mobile support is not in the current scope. The current \myversion\_SNAPSHOT is being developed on a Linux distro, and has been tested on Windows machines.
+
+OETCG will need to peacefully coexist with future Java versions as well.
+
+\section{Design and Implementation Constraints}
+There are several obvious constraints to the development of OETCG. We will list them here:
+
+\begin{enumerate}
+	\item \textbf{Team size}: At the time of this writing, I (Kyle Morris) am the only member of \orgname. Future expansion is necessary, but not at this moment.
+	\item \textbf{Language}: Java (and XML for Maven) are the primary language features. Other languages could possibly be intergrated as long as Java supports it (since Java will be the primary source language). Possibilities include ANTLR, Bison, Flex and even JavaScript.
+	\item \textbf{Scope}: Since this is a first project for \orgname, the overall scope of how complex the product will be is limited -- we all have tough times in our first projects, but we learn from it. That's the key here: this is a passion project.
+	\item \textbf{Possible Hardware Limitations}: Java is not perfect -- something can go wrong, and it may not work on all inteded devices. This is a major issue, however frameworks exist that can alieviate this, like Maven. More will have to be learned from the development team here at \orgname to really crack down on this issue.
+	\item \textbf{Network Protocol}: Currently, a basic LAN service is provided, however even these basic connections must have upmost security and follow correct protocols.
+	\item \textbf{Online presence}: Web-hosting can be expensive for new companies; in the beginning, so simple social media precense (Steam launching) may be the way to go, however this constrains the overall features and reach OETCG can have.
+	\item \textbf{Development Practice}: OETCG will be developed with Agile Development and OO practices and these have inherit limitations, however will help greatly in modeling and system design/architecture. Currently, there is research going into more standard UML practice, system architecture and overall design decisions. 
+	\item \textbf{Experience}: Possibly the biggest constraint, as this is the first project developed by \orgname.
+\end{enumerate}
+\section{User Documentation}
+OETCG shall have extensive, but not obsessive, user documentation. This documentation will allow any level of user (see \textcolor{brown}{2.3 User Classes}) to get whatever information they need.
+
+Since this is the case, there are currently 4 documents planned:
+
+\begin{enumerate}
+	\item Rulebook (short) --  With every game comes a shortened version of the extended rulebook, designed to help get new users into the swing of things easier. This should only be accessed after the initial tutorial is completed.
+	\item Rulebook (full) -- This pdf should be hosted either on the (possible) website, or come packaged with the software itself.
+	\item OECODE Scripting Manual -- This pdf will come with the software itself, going over the OECODE scripting language, with a step-by-step guide on making your first card.
+	\item Current Bug Report -- A subsection of the Updates and Bugs document (loaded with every update, see \textcolor{red}{OE_AutoUpdater}). This will ensure that (hopefully) the same bugs are not printed twice, and to inform users of what is going on.
+\end{enumerate}
+\section{Assumptions and Dependencies}
+Let's start with the assumptions. We are assuming:
+\begin{itemize}
+	\item The future dependencies we need will be available with public licenses. This may or may not affect how the game is distrubuted.
+	\item The design/architecture we are working on will be beneficial to the implementation constraints and requirements (see \textcolor{brown}{2.5 Design and Implementation Constraints} and \textcolor{brown}{2.2 Product Functions}), which is \textit{most often} not the case.
+	\item The operating environments we support will be completely compatable with the current iteration of OETCG (see \textcolor{brown}{2.4 Operating Environment}).
+\end{itemize}
+
+Now, the current dependencies:
+\begin{itemize}
+	\item JDBC -- A library that allows communication with SQLite databases.
+	\item Java libraries (swing, etc).
+\end{itemize}
+\chapter{External Interface Requirements}
+\section{User Interfaces}
+$<$Describe the logical characteristics of each interface between the software 
+product and the users. This may include sample screen images, any GUI standards 
+or product family style guides that are to be followed, screen layout 
+constraints, standard buttons and functions (e.g., help) that will appear on 
+every screen, keyboard shortcuts, error message display standards, and so on.  
+Define the software components for which a user interface is needed. Details of 
+the user interface design should be documented in a separate user interface 
+specification.$>$
+
+There are multiple interfaces OETCG must implement for the user, as seen in the \textcolor{blue}{graphics.screens} package. For each, it will list the name, its purpose, a sample screenshot and a simple description for each element within.
+
+\begin{enumerate}
+	\item \textcolor{red}{OE_StartMenu} -- 
+	\item \textcolor{red}{OE_MainMenu} --
+	\item \textcolor{red}{OE_SettingsMenu} --
+	\item \textcolor{red}{OE_BugReportMenu} --
+	\item \textcolor{red}{OE_ProfileMenu} --
+	\item \textcolor{red}{OE_CardCreatorMenu} --
+	\item \textcolor{red}{OE_HelpMenu} --
+	\item \textcolor{red}{OE_} -- 	      
+\end{enumerate}
+\bookmrk
+Some conventions for user interfaces:
+
+\begin{itemize}
+	\item Each implements the \textcolor{red}{Menu} interface.
+	\item For the most part, 1 menu is displayed at a time, changed via the _CURRENTMENU_ constant in \textcolor{blue}{structures.OE_GameConstants}.
+	
+\end{itemize}
+
+\section{Hardware Interfaces}
+$<$Describe the logical and physical characteristics of each interface between 
+the software product and the hardware components of the system. This may include 
+the supported device types, the nature of the data and control interactions 
+between the software and the hardware, and communication protocols to be 
+used.$>$
+
+\section{Software Interfaces}
+$<$Describe the connections between this product and other specific software 
+components (name and version), including databases, operating systems, tools, 
+libraries, and integrated commercial components. Identify the data items or 
+messages coming into the system and going out and describe the purpose of each.  
+Describe the services needed and the nature of communications. Refer to 
+documents that describe detailed application programming interface protocols.  
+Identify data that will be shared across software components. If the data 
+sharing mechanism must be implemented in a specific way (for example, use of a 
+global data area in a multitasking operating system), specify this as an 
+implementation constraint.$>$
+
+\section{Communications Interfaces}
+$<$Describe the requirements associated with any communications functions 
+required by this product, including e-mail, web browser, network server 
+communications protocols, electronic forms, and so on. Define any pertinent 
+message formatting. Identify any communication standards that will be used, such 
+as FTP or HTTP. Specify any communication security or encryption issues, data 
+transfer rates, and synchronization mechanisms.$>$
+
+
+\chapter{System Features}
+$<$This template illustrates organizing the functional requirements for the 
+product by system features, the major services provided by the product. You may 
+prefer to organize this section by use case, mode of operation, user class, 
+object class, functional hierarchy, or combinations of these, whatever makes the 
+most logical sense for your product.$>$
+
+\section{System Feature 1}
+$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+words.$>$
+
+\subsection{Description and Priority}
+$<$Provide a short description of the feature and indicate whether it is of 
+High, Medium, or Low priority. You could also include specific priority 
+component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+relative scale from a low of 1 to a high of 9).$>$
+
+\subsection{Stimulus/Response Sequences}
+$<$List the sequences of user actions and system responses that stimulate the 
+behavior defined for this feature. These will correspond to the dialog elements 
+associated with use cases.$>$
+
+\subsection{Functional Requirements}
+$<$Itemize the detailed functional requirements associated with this feature.  
+These are the software capabilities that must be present in order for the user 
+to carry out the services provided by the feature, or to execute the use case.  
+Include how the product should respond to anticipated error conditions or 
+invalid inputs. Requirements should be concise, complete, unambiguous, 
+verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+information is not yet available.$>$
+
+$<$Each requirement should be uniquely identified with a sequence number or a 
+meaningful tag of some kind.$>$
+
+REQ-1:	REQ-2:
+
+\section{System Feature 2 (and so on)}
+
+
+\chapter{Other Nonfunctional Requirements}
+
+\section{Performance Requirements}
+$<$If there are performance requirements for the product under various 
+circumstances, state them here and explain their rationale, to help the 
+developers understand the intent and make suitable design choices. Specify the 
+timing relationships for real time systems. Make such requirements as specific 
+as possible. You may need to state performance requirements for individual 
+functional requirements or features.$>$
+
+\section{Safety Requirements}
+$<$Specify those requirements that are concerned with possible loss, damage, or 
+harm that could result from the use of the product. Define any safeguards or 
+actions that must be taken, as well as actions that must be prevented. Refer to 
+any external policies or regulations that state safety issues that affect the 
+product’s design or use. Define any safety certifications that must be 
+satisfied.$>$
+
+\section{Security Requirements}
+$<$Specify any requirements regarding security or privacy issues surrounding use 
+of the product or protection of the data used or created by the product. Define 
+any user identity authentication requirements. Refer to any external policies or 
+regulations containing security issues that affect the product. Define any 
+security or privacy certifications that must be satisfied.$>$
+
+\section{Software Quality Attributes}
+$<$Specify any additional quality characteristics for the product that will be 
+important to either the customers or the developers. Some to consider are: 
+adaptability, availability, correctness, flexibility, interoperability, 
+maintainability, portability, reliability, reusability, robustness, testability, 
+and usability. Write these to be specific, quantitative, and verifiable when 
+possible. At the least, clarify the relative preferences for various attributes, 
+such as ease of use over ease of learning.$>$
+
+\section{Business Rules}
+$<$List any operating principles about the product, such as which individuals or 
+roles can perform which functions under specific circumstances. These are not 
+functional requirements in themselves, but they may imply certain functional 
+requirements to enforce the rules.$>$
+
+
+\chapter{Other Requirements}
+$<$Define any other requirements not covered elsewhere in the SRS. This might 
+include database requirements, internationalization requirements, legal 
+requirements, reuse objectives for the project, and so on. Add any new sections 
+that are pertinent to the project.$>$
+
+\section{Appendix A: Glossary}
+%see https://en.wikibooks.org/wiki/LaTeX/Glossary
+$<$Define all the terms necessary to properly interpret the SRS, including 
+acronyms and abbreviations. You may wish to build a separate glossary that spans 
+multiple projects or the entire organization, and just include terms specific to 
+a single project in each SRS.$>$
+
+\section{Appendix B: Analysis Models}
+$<$Optionally, include any pertinent analysis models, such as data flow 
+diagrams, class diagrams, state-transition diagrams, or entity-relationship 
+diagrams.$>$
+
+\section{Appendix C: To Be Determined List}
+$<$Collect a numbered list of the TBD (to be determined) references that remain 
+in the SRS so they can be tracked to closure.$>$
+
+\end{document}
