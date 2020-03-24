@@ -60,6 +60,15 @@ public class OE_GameStruct {
 			this._opLife = 20;
 			//this._uField = new _uField();
 			//this._opField = new _opField("empty");
+			break;
+		case "campaign":
+			this._player = userData;
+			//this._opponent = userData.getLevel();
+			this._uLife = 20;
+			this._opLife = 20;
+			//this._uField = new _uField();
+			//this._opField = new _opField("empty");
+			break;
 		default:
 			System.exit(-1);
 		}
