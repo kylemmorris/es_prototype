@@ -26,4 +26,5 @@ public final class OE_ScreenConstants {
     public static final Dimension _screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int _X = (int)_screenSize.getWidth();
     public static int _Y = (int)_screenSize.getHeight();
+    public static String _Gsignature = "Operation Extinction " + _Gversion;
 }

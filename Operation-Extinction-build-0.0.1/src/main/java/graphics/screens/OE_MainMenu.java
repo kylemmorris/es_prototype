@@ -151,7 +151,7 @@ public class OE_MainMenu extends JFrame implements Menu {
         _mainPanel.add(_lowerPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
 
         // ================================ GENERATE FRAME & ADD CONTENT
-        _frame = new JFrame("Operation Extinction - " + OE_ScreenConstants._Gversion + " - Main Menu");
+        _frame = new JFrame(OE_ScreenConstants._Gsignature + " - Main Menu");
         _frame.setMinimumSize(_size);
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);

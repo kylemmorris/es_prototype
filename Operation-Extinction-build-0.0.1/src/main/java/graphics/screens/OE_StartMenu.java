@@ -32,6 +32,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     private JFrame _frame;
     // Panels
     private OE_GraphicPane _mainPanel;
+    private JPanel _buttonPane, _textPane;
     // Buttons
     private JButton _loginButton, _resetButton, _createButton;
     // Checkbox
@@ -46,7 +47,6 @@ public class OE_StartMenu extends JFrame implements Menu {
     private OE_dbCursor _Cursor;
     // Constants
     private String pathToImage;
-    private String _signature = "Operation Extinction - " + OE_ScreenConstants._Gversion;
     private Dimension _size = new Dimension(OE_ScreenConstants._X / 3, (OE_ScreenConstants._Y / 3));
     private String _root = new File("").getAbsolutePath();
     private String _tempUsername, _tempPassword;
@@ -90,7 +90,20 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel = new OE_GraphicPane(pathToImage);
     	_mainPanel.setLayout(null);
     	// Alignments
-    	// TODO Make alignments generic
+    	// _wChisle = 640, _hChisle = 360
+    	// panel for buttons TODO
+    	// ============================================
+    	//_buttonPane = new JPanel(new GridBagLayout());
+    	//GridBagConstraints gConst = new GridBagConstraints();
+    	//_buttonPane.setOpaque(false);
+    	//gConst.weightx = 0.0;
+    	//gConst.weighty = _hChisle/1.5;
+    	//gConst.ipadx = _wChisle/12;
+    	//gConst.gridx = 0;
+    	//gConst.gridy = 0;
+    	//gConst.fill = GridBagConstraints.HORIZONTAL;
+    	//_buttonPane.add(_loginButton);
+    	// ============================================
     	_welcomeLabel.setBounds(100, 20, 200, 30);
     	_newLabel.setBounds(425, 20, 200, 30);
     	
@@ -118,7 +131,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel.add(_createButton);
     	
     	// ================================ GENERATE FRAME & ADD CONTENT
-        _frame = new JFrame(_signature);
+        _frame = new JFrame(OE_ScreenConstants._Gsignature);
         _frame.setMinimumSize(_size);
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);
