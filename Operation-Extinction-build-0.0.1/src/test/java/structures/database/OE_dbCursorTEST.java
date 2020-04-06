@@ -11,7 +11,7 @@ public class OE_dbCursorTEST {
     }
     @Test
     public void dbReaderTEST() {
-        _link = new OE_dbCursor("read", "user");
+        _link = new OE_dbCursor(OE_dbCursor.Mode.READUSER);
         assert(_link.setInput("DEV"));
         
         try{

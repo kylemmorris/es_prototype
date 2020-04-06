@@ -8,6 +8,7 @@
 */
 package structures.database;
 
+import java.io.File;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
@@ -33,7 +34,7 @@ import structures.OE_ERROR_EXCEPTION;
  */
 public class OE_dbCursor {
 	// Different modes the cursor can take
-	private enum Mode { READUSER, READCARD, WRITEUSER, WRITECARD };
+	public enum Mode { READUSER, READCARD, WRITEUSER, WRITECARD };
 	// Internal objects
 	private Mode _currentMode = null;
 	private String TARGET;
@@ -50,19 +51,8 @@ public class OE_dbCursor {
 	 * @param String type
 	 * @param String target
 	 */
-	public OE_dbCursor(String type, String target) {
-		switch(type + target) {
-		case "readuser":
-			this._currentMode = Mode.READUSER;
-		case "readcard":
-			this._currentMode = Mode.READCARD;
-		case "writeuser":
-			this._currentMode = Mode.WRITEUSER;
-		case "writecard":
-			this._currentMode = Mode.WRITECARD;
-		default:
-			new OE_ERROR_EXCEPTION("OE_dbCursor: " + type + " " + target + " is unknown cursor type.");
-		}
+	public OE_dbCursor(Mode m) {
+		this._currentMode = m;
 	}
 	/**
 	 * The generic constructor.

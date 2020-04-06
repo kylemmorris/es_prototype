@@ -83,26 +83,27 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_createButton.addActionListener(buttonAction);
     	_showPassword.addActionListener(buttonAction);
     	// Create dbCursor
-    	_Cursor = new OE_dbCursor("read", "user");
+    	_Cursor = new OE_dbCursor(OE_dbCursor.Mode.READUSER);
     	// ================================ GENERATE PANELS
     	// main panel setup
     	pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
     	_mainPanel = new OE_GraphicPane(pathToImage);
-    	_mainPanel.setLayout(null);
     	// Alignments
     	// _wChisle = 640, _hChisle = 360
     	// panel for buttons TODO
     	// ============================================
-    	//_buttonPane = new JPanel(new GridBagLayout());
-    	//GridBagConstraints gConst = new GridBagConstraints();
-    	//_buttonPane.setOpaque(false);
-    	//gConst.weightx = 0.0;
-    	//gConst.weighty = _hChisle/1.5;
-    	//gConst.ipadx = _wChisle/12;
-    	//gConst.gridx = 0;
-    	//gConst.gridy = 0;
-    	//gConst.fill = GridBagConstraints.HORIZONTAL;
-    	//_buttonPane.add(_loginButton);
+    	_buttonPane = new JPanel(new GridBagLayout());
+    	GridBagConstraints gConst = new GridBagConstraints();
+    	_buttonPane.setOpaque(false);
+    	gConst.weightx = 0.0;
+    	gConst.weighty = _hChisle/1.5;
+    	gConst.ipadx = _wChisle/12;
+    	gConst.gridx = 0;
+    	gConst.gridy = 0;
+    	gConst.fill = GridBagConstraints.HORIZONTAL;
+    	_buttonPane.add(_loginButton);
+    	
+    	
     	// ============================================
     	_welcomeLabel.setBounds(100, 20, 200, 30);
     	_newLabel.setBounds(425, 20, 200, 30);
@@ -115,10 +116,16 @@ public class OE_StartMenu extends JFrame implements Menu {
     	
     	_showPassword.setBounds(150, 170, 250, 50);
     	
-    	_loginButton.setBounds(50, 240, 100, 30);
-    	_resetButton.setBounds(200, 240, 100, 30);
-    	_createButton.setBounds(400, 100, 200, 30);
+    	//_loginButton.setBounds(50, 240, 100, 30);
+    	//_resetButton.setBounds(200, 240, 100, 30);
+    	//_createButton.setBounds(400, 100, 200, 30);
     	// Add it all to the panel
+    	GridBagConstraints mConst = new GridBagConstraints();
+    	_mainPanel.setLayout(new GridBagLayout());
+    	//_mainPanel.setLayout(null);
+    	mConst.fill = GridBagConstraints.NONE;
+    	// add it all to main panel TODO
+    	
     	_mainPanel.add(_userLabel);
     	_mainPanel.add(_passwordLabel);
     	_mainPanel.add(_newLabel);
@@ -126,9 +133,9 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_mainPanel.add(_userField);
     	_mainPanel.add(_passworField);
     	_mainPanel.add(_showPassword);
-    	_mainPanel.add(_loginButton);
-    	_mainPanel.add(_resetButton);
-    	_mainPanel.add(_createButton);
+    	//_mainPanel.add(_loginButton);
+    	//_mainPanel.add(_resetButton);
+    	//_mainPanel.add(_createButton);
     	
     	// ================================ GENERATE FRAME & ADD CONTENT
         _frame = new JFrame(OE_ScreenConstants._Gsignature);
@@ -136,7 +143,7 @@ public class OE_StartMenu extends JFrame implements Menu {
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);
         _frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        _frame.setResizable(false);
+        _frame.setResizable(true);
         _frame.pack();
         _frame.setLocationRelativeTo(null);
         _frame.setVisible(true);
