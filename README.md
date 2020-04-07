@@ -5,12 +5,14 @@
 
 A new take on digital card games, take on the role of Military Leaders in a sci-fi universe.
 
-## (Planned) Features:
+## Key software engineering principles:
 
-<p> Combining traditional card games with the strategy of chess, card placement matters.</p>
+<p> 1. Don't reinvent the wheel / Design Patterns. </p>
 
-<p> No micro-transaction nonsense - Instant access to every card in the game.</p>
+<p> 2. Make it work, then make it work right, then make it look pretty. </p>
 
-<p> A unique scripting system - Create your own cards in custom modes.</p>
+<p> 3. Edit, test, push. </p>
 
-<p> LAN support - Play with friends!</p>
+<p> 4. Separate interface from implementation. </p>
+
+<p> 5. Plan the work, then work the plan. </p>
