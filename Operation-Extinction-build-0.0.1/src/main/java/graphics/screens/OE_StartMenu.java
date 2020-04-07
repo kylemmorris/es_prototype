@@ -47,7 +47,7 @@ public class OE_StartMenu extends JFrame implements Menu {
     private OE_dbCursor _Cursor;
     // Constants
     private String pathToImage;
-    private Dimension _size = new Dimension(OE_ScreenConstants._X / 3, (OE_ScreenConstants._Y / 3));
+    private Dimension _size = new Dimension((int)(OE_ScreenConstants._X / 3),(int)(OE_ScreenConstants._Y / 3));
     private String _root = new File("").getAbsolutePath();
     private String _tempUsername, _tempPassword;
     private int _wChisle = (int) _size.getWidth();
@@ -88,63 +88,61 @@ public class OE_StartMenu extends JFrame implements Menu {
     	// main panel setup
     	pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
     	_mainPanel = new OE_GraphicPane(pathToImage);
-    	// ============================================ {{{{{
+    	// =============================================================================={{{{{
+    	// 					MAKE IT LOOK PRETTY SOME OTHER TIME
     	// leftmost panel -------
-//    	_leftPane = new JPanel(new GridBagLayout());
-//    	GridBagConstraints gConst = new GridBagConstraints();
-//    	_leftPane.setOpaque(false);
-//    	gConst.weightx = 0.0;
-//    	gConst.weighty = _hChisle/1.5;
-//    	gConst.ipadx = _wChisle/100;
-//    	gConst.gridx = 0;
-//    	gConst.gridy = 0;
-//    	gConst.fill = GridBagConstraints.HORIZONTAL;
-//    	_leftPane.add(_loginButton, gConst);
-//    	gConst.gridx = 1;
-//    	_leftPane.add(_resetButton, gConst);
+//    	GridBagConstraints lConst = new GridBagConstraints();
+//       	_leftPane = new JPanel(new GridBagLayout());
+//    	_leftPane.setBackground(Color.RED);
+//    	_leftPane.setOpaque(true);
+//    	lConst.fill = GridBagConstraints.NONE;
+//    	lConst.anchor = GridBagConstraints.LINE_START;
+//    	lConst.gridx = 0;
+//    	lConst.gridy = 0;
+//    	lConst.insets = new Insets(5, 0, 0, 0);
+//    	_leftPane.add(_welcomeLabel, lConst);
+//    	lConst.gridy = 1;
+//    	_leftPane.add(_userLabel, lConst);
+//
 //    	// rightmost panel -------
 //    	_rightPane = new JPanel(new GridBagLayout());
-//    	_rightPane.setOpaque(false);
-//    	gConst.ipady = 1;
-//    	_rightPane.add(_createButton, gConst);
-//    	// add it all to main panel
+//    	_rightPane.setBackground(Color.BLUE);
+//    	_rightPane.setOpaque(true);
+//
 //    	GridBagConstraints mConst = new GridBagConstraints();
 //    	_mainPanel.setLayout(new GridBagLayout());
 //    	mConst.fill = GridBagConstraints.NONE;
-//    	mConst.ipady = _hChisle/18;
+//    	mConst.ipadx = _wChisle/2;
+//    	mConst.ipady = _hChisle;
 //    	mConst.gridx = 0;
 //    	mConst.gridy = 1;
-//    	mConst.insets = new Insets(_hChisle/8, 0, 0, 0);
 //    	_mainPanel.add(_leftPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
-//    	mConst.ipadx = _wChisle/5;
 //    	mConst.gridx = 1;
 //    	_mainPanel.add(_rightPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
-    	// ============================================ }}}}}
+    	// ============================================================================= }}}}}
     	// Alignments
     	// _wChisle = 640, _hChisle = 360
-    	
-    	//_loginButton.setBounds(x, y, width, height);
     	//_loginButton.setBounds(50, 240, 100, 30);
     	_loginButton.setBounds((int)(_wChisle/12.8), (int)(_hChisle/1.5), (int)(_wChisle/6.4), (int)(_hChisle/12));
-    	//_resetButton.setBounds(200, 240, 100, 30);
+//    	//_resetButton.setBounds(200, 240, 100, 30);
     	_resetButton.setBounds((int)(_wChisle/3.2), (int)(_hChisle/1.5), (int)(_wChisle/6.4), (int)(_hChisle/12));
-    	//_createButton.setBounds(400, 100, 200, 30);
+//    	//_createButton.setBounds(400, 100, 200, 30);
     	_createButton.setBounds((int)(_wChisle/1.6), (int)(_hChisle/3.6), (int)(_wChisle/3.2), (int)(_hChisle/12));
-    	//_welcomeLabel.setBounds(100, 20, 200, 30);
+//    	//_welcomeLabel.setBounds(100, 20, 200, 30);
     	_welcomeLabel.setBounds((int)(_wChisle/6.4), (int)(_hChisle/18), (int)(_wChisle/3.2), (int)(_hChisle/12));
-    	//_newLabel.setBounds(425, 20, 200, 30);
+//    	//_newLabel.setBounds(425, 20, 200, 30);
     	_newLabel.setBounds((int)(_wChisle/1.5), (int)(_hChisle/18), (int)(_wChisle/3.2), (int)(_hChisle/12));
-    	//_userLabel.setBounds(50, 70, 100, 30);
+//    	//_userLabel.setBounds(50, 70, 100, 30);
     	_userLabel.setBounds((int)(_wChisle/12.8), (int)(_hChisle/5.14), (int)(_wChisle/6.4), (int)(_hChisle/12));
-    	//_userField.setBounds(150, 70, 150, 30);
+//    	//_userField.setBounds(150, 70, 150, 30);
     	_userField.setBounds((int)(_wChisle/4.3), (int)(_hChisle/5.14), (int)(_wChisle/4.26), (int)(_hChisle/12));
-    	//_passwordLabel.setBounds(50, 130, 100, 30);
+//    	//_passwordLabel.setBounds(50, 130, 100, 30);
     	_passwordLabel.setBounds((int)(_wChisle/12.8), (int)(_hChisle/2.76), (int)(_wChisle/6.4), (int)(_hChisle/12));
-    	//_passworField.setBounds(150, 130, 150, 30);
+//    	//_passworField.setBounds(150, 130, 150, 30);
     	_passworField.setBounds((int)(_wChisle/4.3), (int)(_hChisle/2.76), (int)(_wChisle/4.26), (int)(_hChisle/12));
-    	//_showPassword.setBounds(150, 170, 250, 50);
+//    	//_showPassword.setBounds(150, 170, 250, 50);
     	_showPassword.setBounds((int)(_wChisle/4.3), (int)(_hChisle/2.117), (int)(_wChisle/2.56), (int)(_hChisle/7.2));
-    															//master chief
+
     	 //Add it all to the panel
     	_mainPanel.setLayout(null);
     	_mainPanel.add(_userLabel);
@@ -212,8 +210,6 @@ public class OE_StartMenu extends JFrame implements Menu {
     }
     protected void accountCreation() {
     	OE_GameConstants._CURRENTMENU_ = new OE_AccountCreationMenu();
-    	_frame.dispose();
-    	this.dispose();
     }
 }
     

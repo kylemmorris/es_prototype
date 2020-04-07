@@ -22,7 +22,7 @@ import structures.database.OEuserData;
 import structures.OE_GameConstants;
 import structures.database.OE_dbCursor;
 
-public class OE_AccountCreationMenu implements Menu {
+public class OE_AccountCreationMenu extends JFrame implements Menu {
 	// Frame
 	private JFrame _frame;
 	// Panels
@@ -37,7 +37,6 @@ public class OE_AccountCreationMenu implements Menu {
 	// Constants
     private Dimension _size = new Dimension(OE_ScreenConstants._X / 3, (OE_ScreenConstants._Y / 3));
     private String _root = new File("").getAbsolutePath();
-    private String _signature = "Operation Extinction - " + OE_ScreenConstants._Gversion + " - Account Creation";
     private int _wChisle = (int) _size.getWidth();
     private int _hChisle = (int) _size.getHeight();
     private String pathToImage;
@@ -74,9 +73,41 @@ public class OE_AccountCreationMenu implements Menu {
 		// Create dbCursor
 		_Cursor = new OE_dbCursor();
 		
-		// =============================== GENERATE PANELS
+		// Alignment
+		// _wChisle = 640, _hChisle = 360
+		//_backButton.setBounds(x, y, width, height);
+		_backButton.setBounds(30, 20, 100, 30);
+		_welcomeLabel.setBounds(200, 20, 500, 30);
+		_userLabel.setBounds(50, 100, 200, 30);
+		_passLabel.setBounds(50, 150, 200, 30);
+		_confirmLabel.setBounds(30, 200, 200, 30);
+		_newUserName.setBounds(200, 100, 200, 30);
+		_newPassword.setBounds(200, 150, 200, 30);
+		_confirmPassword.setBounds(200, 200, 200, 30);
+		// Add it all to the panel
+		pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
+    	_mainPanel = new OE_GraphicPane(pathToImage);
+		_mainPanel.setLayout(null);
+		_mainPanel.add(_welcomeLabel);
+		_mainPanel.add(_userLabel);
+		_mainPanel.add(_passLabel);
+		_mainPanel.add(_confirmLabel);
+		_mainPanel.add(_newUserName);
+		_mainPanel.add(_newPassword);
+		_mainPanel.add(_confirmPassword);
+		_mainPanel.add(_backButton);
+//		_mainPanel.add(_createButton);
+//		_mainPanel.add(_resetButton);
 		// =============================== GENERATE FRAME, ADD CONTENT
-		_frame = new JFrame(_signature);
+        _frame = new JFrame(OE_ScreenConstants._Gsignature + " - Account Creation");
+        _frame.setMinimumSize(_size);
+        _frame.setMaximumSize(OE_ScreenConstants._screenSize);
+        _frame.setContentPane(_mainPanel);
+        //_frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        _frame.setResizable(false);
+        _frame.pack();
+        _frame.setLocationRelativeTo(null);
+        _frame.setVisible(true);
 	}
 	// ============================== BUTTON ACTIONS
 	protected void accountCreation() {
@@ -86,7 +117,8 @@ public class OE_AccountCreationMenu implements Menu {
 		
 	}
 	protected void back() {
-		
+		_frame.dispose();
+		this.dispose();
 	}
 
 
