@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.PrimitiveIterator.OfDouble;
 
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
@@ -71,7 +72,7 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		_createButton.addActionListener(buttonAction);
 		_resetButton.addActionListener(buttonAction);
 		// Create dbCursor
-		_Cursor = new OE_dbCursor();
+		_Cursor = new OE_dbCursor(OE_dbCursor.Mode.READUSER);
 		
 		// Alignment
 		// _wChisle = 640, _hChisle = 360
@@ -84,6 +85,8 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		_newUserName.setBounds(200, 100, 200, 30);
 		_newPassword.setBounds(200, 150, 200, 30);
 		_confirmPassword.setBounds(200, 200, 200, 30);
+		_createButton.setBounds(180, 250, 100, 30);
+		_resetButton.setBounds(320, 250, 100, 30);
 		// Add it all to the panel
 		pathToImage = (_root.concat("/graphics/mainBackground.jpg"));
     	_mainPanel = new OE_GraphicPane(pathToImage);
@@ -96,14 +99,13 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		_mainPanel.add(_newPassword);
 		_mainPanel.add(_confirmPassword);
 		_mainPanel.add(_backButton);
-//		_mainPanel.add(_createButton);
-//		_mainPanel.add(_resetButton);
+		_mainPanel.add(_createButton);
+		_mainPanel.add(_resetButton);
 		// =============================== GENERATE FRAME, ADD CONTENT
         _frame = new JFrame(OE_ScreenConstants._Gsignature + " - Account Creation");
         _frame.setMinimumSize(_size);
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);
-        //_frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         _frame.setResizable(false);
         _frame.pack();
         _frame.setLocationRelativeTo(null);
@@ -111,11 +113,47 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 	}
 	// ============================== BUTTON ACTIONS
 	protected void accountCreation() {
+		// If any fields are blank, stop
+		if(_newUserName.getText().equals("")
+				|| String.valueOf(_newPassword.getPassword()).equals("")
+				|| String.valueOf(_confirmPassword.getPassword()).equals("")) {
+			JOptionPane.showMessageDialog(this, "Please fill out all fields.");
+			return;
+		}
+		// If the passwords do not match, stop
+		if(! String.valueOf(_newPassword.getPassword()).equals(String.valueOf(_confirmPassword.getPassword()))) {
+			JOptionPane.showMessageDialog(this, "Passwords do not match.");
+			return;
+		}
+		// Set input to the username field
+		_Cursor.setInput(_newUserName.getText());
 		
+		
+		// Check if the user exists or not
+		// If it does, need to pick a new name
+		// If not, create the account
+		System.out.println(_Cursor.userExists());
+		if(_Cursor.userExists()) {
+			JOptionPane.showMessageDialog(this, "Username already exists.");
+		}
+		else {
+			_Cursor.setMode(OE_dbCursor.Mode.WRITEUSER);
+			if(!_Cursor.userCreate(String.valueOf(_newPassword.getPassword()))) {
+				JOptionPane.showMessageDialog(this, "User creation failed");
+				return;
+			}
+			JOptionPane.showMessageDialog(this, "User " + _newUserName.getText() + " created!");
+			resetText();
+			back();
+		}
 	}
+	
 	protected void resetText() {
-		
+		_newUserName.setText("");
+		_newPassword.setText("");
+		_confirmPassword.setText("");
 	}
+	
 	protected void back() {
 		_frame.dispose();
 		this.dispose();
