@@ -21,6 +21,7 @@ import java.util.PrimitiveIterator.OfDouble;
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
 import structures.OE_GameConstants;
+import structures.database.OE_dbConnector;
 import structures.database.OE_dbCursor;
 
 public class OE_AccountCreationMenu extends JFrame implements Menu {
@@ -43,7 +44,7 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
     private String pathToImage;
     // Data
     private OEuserData _tempData;
-    private OE_dbCursor _Cursor;
+    private OE_dbConnector _dbCon;
     
     private ActionListener buttonAction = new ActionListener(){
         public void actionPerformed(ActionEvent e) {
@@ -72,7 +73,7 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		_createButton.addActionListener(buttonAction);
 		_resetButton.addActionListener(buttonAction);
 		// Create dbCursor
-		_Cursor = new OE_dbCursor(OE_dbCursor.Mode.READUSER);
+		_dbCon = new OE_dbConnector();
 		
 		// Alignment
 		// _wChisle = 640, _hChisle = 360
@@ -125,23 +126,13 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 			JOptionPane.showMessageDialog(this, "Passwords do not match.");
 			return;
 		}
-		// Set input to the username field
-		_Cursor.setInput(_newUserName.getText());
-		
-		
-		// Check if the user exists or not
-		// If it does, need to pick a new name
-		// If not, create the account
-		System.out.println(_Cursor.userExists());
-		if(_Cursor.userExists()) {
+		// Create the user.
+		// If Connector cannot create user, throw the pane.
+		// If it can, it has been created, so let user know.
+		if(!_dbCon.createUser(_newUserName.getText(), String.valueOf(_newPassword.getPassword()))) {
 			JOptionPane.showMessageDialog(this, "Username already exists.");
 		}
 		else {
-			_Cursor.setMode(OE_dbCursor.Mode.WRITEUSER);
-			if(!_Cursor.userCreate(String.valueOf(_newPassword.getPassword()))) {
-				JOptionPane.showMessageDialog(this, "User creation failed");
-				return;
-			}
 			JOptionPane.showMessageDialog(this, "User " + _newUserName.getText() + " created!");
 			resetText();
 			back();
