@@ -78,6 +78,13 @@ public class OE_StartMenu extends JFrame implements Menu {
     	_resetButton = new JButton("RESET");
     	_createButton = new JButton("CREATE NEW ACCOUNT");
     	_showPassword = new JCheckBox("SHOW PASSWORD");
+    	
+    	_userLabel.setForeground(Color.white);
+    	_passwordLabel.setForeground(Color.white);
+    	_welcomeLabel.setForeground(Color.white);
+    	_newLabel.setForeground(Color.white);
+    	_showPassword.setOpaque(false);
+    	_showPassword.setForeground(Color.white);
     	// Add action listeners
     	_loginButton.addActionListener(buttonAction);
     	_resetButton.addActionListener(buttonAction);
@@ -182,7 +189,6 @@ public class OE_StartMenu extends JFrame implements Menu {
     	// Note .getPassword() is a char[] array. So use String instance.
     	// TODO Scramble Password for security.
 		String _tempPassString = String.valueOf(_passworField.getPassword());
-    	System.out.println("PASS :::: " + _tempPassString);
     	if(_tempData.getString("password").equals(_tempPassString)) {
     		// Update all constants
     		OE_GameConstants._CURRENTUSER_ = _tempData;
@@ -190,7 +196,6 @@ public class OE_StartMenu extends JFrame implements Menu {
     		OE_GameConstants._CURRENTMENU_ = new OE_MainMenu();
     		_frame.dispose();
     		this.dispose();
-
     	}
     	// If not, this can't be a legitimate password
     	else {

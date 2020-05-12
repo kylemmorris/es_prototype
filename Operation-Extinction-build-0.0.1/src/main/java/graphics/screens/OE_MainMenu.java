@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import graphics.OE_ScreenConstants;
+import structures.OE_GameConstants;
 /**
  * The Main Menu of Operation Extinction, a <code>JFrame</code> subtype.
  * <p> Implements the <code>Menu</code> interface.</p>
@@ -151,7 +152,7 @@ public class OE_MainMenu extends JFrame implements Menu {
         _mainPanel.add(_lowerPane, mConst, JLayeredPane.FRAME_CONTENT_LAYER);
 
         // ================================ GENERATE FRAME & ADD CONTENT
-        _frame = new JFrame(OE_ScreenConstants._Gsignature + " - Main Menu");
+        _frame = new JFrame("[" + OE_GameConstants._CURRENTUSER_.getString("id") + "] " + OE_ScreenConstants._Gsignature + " - Main Menu");
         _frame.setMinimumSize(_size);
         _frame.setMaximumSize(OE_ScreenConstants._screenSize);
         _frame.setContentPane(_mainPanel);

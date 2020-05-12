@@ -22,7 +22,6 @@ import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
 import structures.OE_GameConstants;
 import structures.database.OE_dbConnector;
-import structures.database.OE_dbCursor;
 
 public class OE_AccountCreationMenu extends JFrame implements Menu {
 	// Frame
@@ -68,6 +67,11 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		_backButton = new JButton("BACK");
 		_createButton = new JButton("SIGN UP");
 		_resetButton = new JButton("RESET");
+		
+		_welcomeLabel.setForeground(Color.white);
+		_userLabel.setForeground(Color.white);
+		_passLabel.setForeground(Color.white);
+		_confirmLabel.setForeground(Color.white);
 		// Add action listeners
 		_backButton.addActionListener(buttonAction);
 		_createButton.addActionListener(buttonAction);
@@ -134,6 +138,7 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		}
 		else {
 			JOptionPane.showMessageDialog(this, "User " + _newUserName.getText() + " created!");
+			//System.out.println()
 			resetText();
 			back();
 		}

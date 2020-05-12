@@ -1,4 +1,5 @@
 package structures.database;
+import java.awt.Component;
 import java.io.File;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -12,11 +13,13 @@ import java.sql.Timestamp;
 import java.util.Random;
 
 import javax.naming.OperationNotSupportedException;
+import javax.swing.JOptionPane;
 
 import org.sqlite.SQLiteException;
 
 import structures.OE_Data;
 import structures.OE_ERROR_EXCEPTION;
+import structures.OE_GameConstants;
 
 /**
  * 
@@ -49,18 +52,21 @@ public class OE_dbConnector {
 	
 	// Method for connecting to the database
 	private void connect() {
-		try {
-			this.conn = DriverManager.getConnection(JDBC_URL);
-		} catch(SQLException e) {
-			System.err.println(e.getMessage());
-			System.exit(-1);
+        try{
+            Class.forName("org.sqlite.JDBC");
+            this.conn = DriverManager.getConnection(JDBC_URL);
+            //this.conn.setAutoCommit(false);
+        } catch(Exception e){
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            e.printStackTrace();
+            System.exit(0);
 			try {
 				conn.close();
 			} catch(SQLException e2) {
 				System.err.println(e2.getMessage());
 				System.exit(-1);
 			}
-		}
+        }
 	}
 	
 	// ======================================== FUNCTIONS
@@ -88,10 +94,9 @@ public class OE_dbConnector {
 			int tempdeckid = this.rs.getInt("userdeckid");
 			int temppts = this.rs.getInt("userpts");
 			int temprank = this.rs.getInt("userrank");
-			//Blob temppfp = this.rs.getBlob("userpfp");
-			//Timestamp tempdatejoin = this.rs.getDate("userdatejoin");
+			Timestamp tempdatejoin = this.rs.getTimestamp("userdatejoin");
 			// 5. Create and return wrapper
-			this._user = new OEuserData(tempid, tempass, tempdeckid, temppts, temprank);
+			this._user = new OEuserData(tempid, tempass, tempdeckid, temppts, tempdatejoin, temprank);
 		}catch(SQLException e) {
 			// If user doesn't exist
 			// Calling program must handle exception
@@ -129,8 +134,7 @@ public class OE_dbConnector {
 				return false;
 		} catch(SQLException e) {
 			// Username already exists, close conn
-			System.err.println(e.getMessage());
-			System.exit(-1);
+			JOptionPane.showMessageDialog((Component) OE_GameConstants._CURRENTMENU_, "There was an issue (ERROR dbConnector:129)");
 			try {
 				this.conn.close();
 			} catch(SQLException f) {}
@@ -138,14 +142,13 @@ public class OE_dbConnector {
 		// 3. From this point on, username is new. So create
 		try {
 			// 4. Prepare statement
-			Timestamp ts = new Timestamp(System.currentTimeMillis());
-			this.stmt = this.conn.prepareStatement("INSERT INTO User (userid, userpass, userdeckid, userpts, userdatejoin, userrank)"
-					+ " VALUES(?, ?, ?, ?, ?, ?)");
+			this.stmt = this.conn.prepareStatement("INSERT INTO User (userid, userpass, userdeckid, userpts, userdatejoin, userrank, userpfppath)"
+					+ " VALUES(?, ?, ?, ?, ?, ?, NULL)");
 			this.stmt.setString(1, newID);
 			this.stmt.setString(2, newPass);
 			this.stmt.setInt(3, new Random().nextInt(100));
 			this.stmt.setInt(4, 0);
-			this.stmt.setTimestamp(5, ts);
+			this.stmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
 			this.stmt.setInt(6, 0);
 			
 			// 5. Execute

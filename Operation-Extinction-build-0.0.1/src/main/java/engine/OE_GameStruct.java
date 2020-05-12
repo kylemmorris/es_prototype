@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import graphics.screens.OE_GraphicPane;
 import graphics.screens.OE_StartMenu;
 import engine.OE_DataTypes.*;
-import structures.database.OE_dbCursor;
 import structures.database.OEuserData;
 
 /**

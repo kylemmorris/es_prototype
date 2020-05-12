@@ -23,37 +23,23 @@ import structures.OE_Data;
  */
 public class OEuserData implements OE_Data {
     // TODO Uses hashing for private material. Will be thread-safe.
+	private String signature;
+	
     private String id;
     private String password;
     private int deck_ID;
     private Blob profilePic;
     private int points;
-    private Date joinDate;
+    private Timestamp joinDate;
     private int rank;
 
     // Constructors
-    public OEuserData(String id, String password, int deck_ID, Blob profilePic, int points, Date joinDate, int rank) {
-        this.id = id;
-        this.password = password;
-        this.deck_ID = deck_ID;
-        this.profilePic = profilePic;
-        this.points = points;
-        this.joinDate = joinDate;
-        this.rank = rank;
-    }
-    public OEuserData(String id, String password, int deck_ID, int points, Date joinDate, int rank) {
+    public OEuserData(String id, String password, int deck_ID, int points, Timestamp joinDate, int rank) {
         this.id = id;
         this.password = password;
         this.deck_ID = deck_ID;
         this.points = points;
         this.joinDate = joinDate;
-        this.rank = rank;
-    }
-    public OEuserData(String id, String password, int deck_ID, int points, int rank) {
-        this.id = id;
-        this.password = password;
-        this.deck_ID = deck_ID;
-        this.points = points;
         this.rank = rank;
     }
     /**
@@ -92,7 +78,7 @@ public class OEuserData implements OE_Data {
      * Gets the join date of the user, as a Date.
      * @return Date
      */
-    public Date getDateJoined(){
+    public Timestamp getDateJoined(){
         return this.joinDate;
     }
     
