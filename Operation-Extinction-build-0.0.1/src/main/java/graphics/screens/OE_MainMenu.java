@@ -45,6 +45,9 @@ public class OE_MainMenu extends JFrame implements Menu {
     // ================================ ACTION LISETENER
     private ActionListener buttonAction = new ActionListener(){
         public void actionPerformed(ActionEvent e){
+        	if(e.getSource() == _profile) {
+        		showProfile();
+        	}
             if(e.getSource() == _quit){
                 exitMain();
             }
@@ -63,6 +66,7 @@ public class OE_MainMenu extends JFrame implements Menu {
         _profile = new JButton("PRO");
         // Add action listeners
         _quit.addActionListener(buttonAction);
+        _profile.addActionListener(buttonAction);
 
         // ================================ GENERATE PANELS
         // main panel setup
@@ -164,6 +168,9 @@ public class OE_MainMenu extends JFrame implements Menu {
     }
 
     // ================================ BUTTON ACTIONS
+    protected void showProfile() {
+    	//OE_GameConstants._CURRENTMENU_ = new OE_ProfileMenu();
+    }
     protected void exitMain() {
         int rv = JOptionPane.showConfirmDialog(_frame, "Are you sure you want to quit?", "Quit", JOptionPane.YES_NO_OPTION);
         if(rv == JOptionPane.YES_OPTION){

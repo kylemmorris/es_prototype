@@ -11,16 +11,13 @@
 package graphics.screens;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.sql.SQLException;
-import java.util.PrimitiveIterator.OfDouble;
-
 import graphics.OE_ScreenConstants;
 import structures.database.OEuserData;
-import structures.OE_GameConstants;
 import structures.database.OE_dbConnector;
 
 public class OE_AccountCreationMenu extends JFrame implements Menu {
@@ -118,11 +115,29 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 	}
 	// ============================== BUTTON ACTIONS
 	protected void accountCreation() {
+		String _tempUN = _newUserName.getText();
 		// If any fields are blank, stop
-		if(_newUserName.getText().equals("")
+		if(_tempUN.equals("")
 				|| String.valueOf(_newPassword.getPassword()).equals("")
 				|| String.valueOf(_confirmPassword.getPassword()).equals("")) {
 			JOptionPane.showMessageDialog(this, "Please fill out all fields.");
+			return;
+		}
+		// If the user name is out of bounds,stop
+		// Bounds: Must be between 4 and 12 characters
+		if(_tempUN.length() < 4 || _tempUN.length() > 12) {
+			JOptionPane.showMessageDialog(this, "Username must be between 4 and 12 characters long.");
+			return;
+		}
+		// If the password is out of bounds (5 - 20), stop
+		if(String.valueOf(_newPassword.getPassword()).length() < 5
+				|| String.valueOf(_newPassword.getPassword()).length() > 20) {
+			JOptionPane.showMessageDialog(this, "Password must be between 5 and 20 characters long.");
+			return;
+		}
+		// If the user name is not alphanumeric (only letters & numbers), stop
+		if(!isLegalUN(_tempUN)) {
+			JOptionPane.showMessageDialog(this, "Username must only contain letters, numbers and underscores.");
 			return;
 		}
 		// If the passwords do not match, stop
@@ -133,13 +148,11 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 		// Create the user.
 		// If Connector cannot create user, throw the pane.
 		// If it can, it has been created, so let user know.
-		if(!_dbCon.createUser(_newUserName.getText(), String.valueOf(_newPassword.getPassword()))) {
+		if(!_dbCon.createUser(_tempUN, String.valueOf(_newPassword.getPassword()))) {
 			JOptionPane.showMessageDialog(this, "Username already exists.");
 		}
 		else {
-			JOptionPane.showMessageDialog(this, "User " + _newUserName.getText() + " created!");
-			//System.out.println()
-			resetText();
+			JOptionPane.showMessageDialog(this, "User " + _tempUN + " created!");
 			back();
 		}
 	}
@@ -153,6 +166,16 @@ public class OE_AccountCreationMenu extends JFrame implements Menu {
 	protected void back() {
 		_frame.dispose();
 		this.dispose();
+	}
+	
+	private boolean isLegalUN(String input) {
+		char[] temp = input.toCharArray();
+		for(char c : temp) {
+			if(!Character.isLetterOrDigit(c) && c != '_') {
+				return false;
+			}
+		}
+		return true;
 	}
 
 

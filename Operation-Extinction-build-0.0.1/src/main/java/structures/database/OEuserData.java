@@ -24,27 +24,51 @@ import structures.OE_Data;
 public class OEuserData implements OE_Data {
     // TODO Uses hashing for private material. Will be thread-safe.
 	private String signature;
+	private OE_dbConnector _dbCon;
+	private boolean altered;
 	
     private String id;
     private String password;
     private int deck_ID;
-    private Blob profilePic;
     private int points;
     private Timestamp joinDate;
     private int rank;
+    private String pfpPath;
 
     // Constructors
     public OEuserData(String id, String password, int deck_ID, int points, Timestamp joinDate, int rank) {
+    	// Change variable
+    	this.altered = false;
+    	// Cannot change
         this.id = id;
-        this.password = password;
         this.deck_ID = deck_ID;
-        this.points = points;
         this.joinDate = joinDate;
+        // Could change
+        this.password = password;
+        this.points = points;
         this.rank = rank;
+        //this.pfpPath = pfpPath;
+    }
+    /**
+     * If the data has been altered, calling this method
+     * will push the changes to the database.
+     * <p>Possible inputs: "password", "points", "rank", or "pfp".
+     * Will update the inputed attribute.
+     */
+    public void updateData(String s) {
+    	if(this.altered) {
+    		// push to db
+    		this.altered = false;
+    	}
+    }
+    public boolean needsUpdate() {
+    	if(this.altered)
+    		return true;
+    	return false;
     }
     /**
      * Gets the Username or Password of the user.
-     * <p>Possible inputs: "id", "password".</p>
+     * <p>Possible inputs: "id", "password", or "pfppath".</p>
      * <p>Returns "ERROR:OEuserData.getString() FAILED" on failure.</p>
      * @param s
      * @return String
@@ -52,6 +76,7 @@ public class OEuserData implements OE_Data {
     public String getString(String s) {
         if(s == "id") return this.id;
         else if(s == "password") return this.password;
+        else if (s == "pfppath") return this.pfpPath;
         else return "ERROR:OEUserData.getString() FAILED";
     }
     /**
@@ -66,13 +91,6 @@ public class OEuserData implements OE_Data {
         else if(s == "points") return this.points;
         else if(s == "rank") return this.rank;
         else return -1;
-    }
-    /**
-     * Gets the profile picture of the user, as a BLOB.
-     * @return Blob
-     */
-    public Blob getProfilePic(){
-        return this.profilePic;
     }
     /**
      * Gets the join date of the user, as a Date.
