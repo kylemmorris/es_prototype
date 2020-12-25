@@ -23,7 +23,6 @@ public final class OE_DataTypes {
     public enum Fellowship {ALLIANCE, SPAWN, GENESIS, REFLECTION, OCCULT, BEHELD};
     public enum Type {OVERLORD, UNIT, WEAPON, EVENT, INVENTION, MONUMENT, BASE, SURPLUS};
     public enum Subtype {OFFENSE, DEFENSE, SUPPORT, PRIMARY, SECONDARY, HEAVY, SPECIAL};
-    public enum Phases {DRAW, DEACTIVATION, DAWN, MAIN, PASSIVE, COMBAT, DAMAGEI, COUNTER, DAMAGEII, FORTIFY, DUSK};
     // Datatypes
     public class Tuple<X, Y> {
         public final int x;
