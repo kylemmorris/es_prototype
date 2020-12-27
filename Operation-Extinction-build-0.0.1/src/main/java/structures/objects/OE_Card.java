@@ -29,8 +29,6 @@ import graphics.screens.OE_Texture;
 * 
 * @throws OE_CARD_DATABASE_EXCEPTION
 * @throws OE_CARD_ERROR_EXCEPTION
-* @throws OE_CARD_RENDER_EXCEPTION
-* @throws OE_CARD_CUSTOM_EXCEPTION
 * @throws OE_CARD_ILLEGAL_STATE_EXCEPTION
 * 
 * @author Kyle M. Morris
@@ -69,6 +67,10 @@ public abstract class OE_Card {
 	
 	public OE_Card() {
 		
+	}
+	
+	public boolean isCustom() {
+		return _custom;
 	}
 	
 	

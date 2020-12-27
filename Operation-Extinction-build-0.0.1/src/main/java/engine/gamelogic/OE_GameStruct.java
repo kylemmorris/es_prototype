@@ -34,6 +34,7 @@ import engine.OE_DataTypes;
  */
 public class OE_GameStruct {
 	public static String Version = "v1";
+	public OE_State currentState;
 	public int p1Life,p2Life,turnNum,p1HandSize,p2HandSize,p1HandCount,p2HandCount,
 	p1DeckCount,p2DeckCount,p1GraveCount,p2GraveCount;
 	//public HashMap<OE_DataTypes.BoardID, OE_DataTypes.CardID> CardsOnBoard;

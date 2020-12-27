@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 import org.sqlite.SQLiteException;
 
 import structures.OE_Data;
-import structures.OE_ERROR_EXCEPTION;
 import structures.OE_GameConstants;
+import structures.objects.OE_Card;
 
 /**
  * 
@@ -45,7 +45,7 @@ public class OE_dbConnector {
 	private ResultSet rs = null;
 	private PreparedStatement stmt = null;
 	private OEuserData _user;
-	private OEabstractCard _card;
+	private OE_Card _card;
 	
 	// Only need a default constructor.
 	public OE_dbConnector() {}
