@@ -5,6 +5,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.FloatBuffer;
+
+import org.joml.Matrix4f;
+import org.lwjgl.BufferUtils;
 
 // SHADER SOURCE FILES END IN:
 // *.oevs for vertex shaders
@@ -79,6 +83,15 @@ public class OE_Shader {
 		int location = glGetUniformLocation(program, name);
 		if(location != -1) {
 			glUniform1i(location, value);
+		}
+	}
+	
+	public void setUniform(String name, Matrix4f value) {
+		int location = glGetUniformLocation(program, name);
+		FloatBuffer buffer = BufferUtils.createFloatBuffer(16);  // holds all info for matrix math
+		value.get(buffer);
+		if(location != -1) {
+			glUniformMatrix4fv(location, false, buffer);
 		}
 	}
 }

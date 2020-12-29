@@ -1,5 +1,7 @@
 package graphics.screens;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -36,6 +38,7 @@ public class testScreen implements Menu {
 		glfwShowWindow(win);
 		glfwMakeContextCurrent(win);
 		GL.createCapabilities();
+		OE_Camera camera = new OE_Camera(640,640);
 		glEnable(GL_TEXTURE_2D);
 		float[] vertices = new float[] {
 				-0.5f, 0.5f, 0, 	// TOP LEFT			0
@@ -55,9 +58,19 @@ public class testScreen implements Menu {
 		};
 		OE_Model model = new OE_Model(vertices, textures, indices);
 		OE_Texture tex = new OE_Texture("./src/main/resources/graphics/cardTest.png");
+		// scales and translates the texture
+		Matrix4f scale = new Matrix4f()
+				.translate(new Vector3f(100,0,0))
+				.scale(200);
+		Matrix4f target = new Matrix4f();
+		
+		camera.setPosition(new Vector3f(-100,0,0));
+		
+		// This will multiply scale (a matrix) with projection, and puts it onto target
 		OE_Shader shader = new OE_Shader("test");
 		float x = 0;
 		while(!glfwWindowShouldClose(win)) {
+			target = scale; 
 			glfwPollEvents();
 			if(glfwGetKey(win, GLFW_KEY_ESCAPE)== GL_TRUE) {
 				glfwSetWindowShouldClose(win, true);
@@ -68,6 +81,7 @@ public class testScreen implements Menu {
 			glClear(GL_COLOR_BUFFER_BIT);
 			shader.bind();
 			shader.setUniform("sampler", 0); // enable 0th sampler 
+			shader.setUniform("projection", camera.getProjection().mul(target));
 			tex.bind(0);
 			model.render();
 			glfwSwapBuffers(win);
