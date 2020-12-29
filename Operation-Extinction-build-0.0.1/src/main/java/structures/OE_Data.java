@@ -14,10 +14,12 @@ package structures;
  * transmit() will be used by most other objects that manipulate
  * the data.
  * 
- * Current datatypes: OE_userData, OE_abstractCard
+ * Current datatypes: OE_userData, OE_Card
  * 
- * @author Kyle M. Morris
- * @since 0.0.1
+* @author Kyle M. Morris
+* @since v0.1.0-a
+* @version 1
+* 
  *
  */
 public interface OE_Data {

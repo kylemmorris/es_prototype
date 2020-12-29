@@ -8,6 +8,7 @@
 */
 import javax.swing.JFrame;
 import graphics.screens.OE_StartMenu;
+import graphics.screens.testScreen;
 import structures.OE_GameConstants;
 
 /**
@@ -19,6 +20,9 @@ import structures.OE_GameConstants;
 public class OE_Run extends JFrame {
     // main startup method
     public static void main(String[] args) {
-    	structures.OE_GameConstants._CURRENTMENU_ = new OE_StartMenu();
+    	//structures.OE_GameConstants._CURRENTMENU_ = new OE_StartMenu();
+    	testScreen win = new testScreen();
+    	structures.OE_GameConstants._CURRENTMENU_ = win;
+    	win.run();
     }
 }
