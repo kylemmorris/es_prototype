@@ -8,6 +8,8 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.*;
 
+import engine.OE_Timer;
+
 import java.nio.*;
 import java.nio.ByteBuffer;
 
@@ -69,22 +71,53 @@ public class testScreen implements Menu {
 		// This will multiply scale (a matrix) with projection, and puts it onto target
 		OE_Shader shader = new OE_Shader("test");
 		float x = 0;
+		
+		double frame_cap = 1.0/60.0; // 1sec / 60 frames (60 FPS)
+		double time = OE_Timer.getTime();
+		double unprocessed = 0;
+		
+		double frame_time = 0.0;
+		int frames = 0;
+		
 		while(!glfwWindowShouldClose(win)) {
-			target = scale; 
-			glfwPollEvents();
-			if(glfwGetKey(win, GLFW_KEY_ESCAPE)== GL_TRUE) {
-				glfwSetWindowShouldClose(win, true);
+			boolean can_render = false;
+			double time_2 = OE_Timer.getTime();
+			double passed = time_2 = time;
+			unprocessed += passed;
+			frame_time += passed;
+			
+			time = time_2;
+			
+			// do unprocessed frames
+			while(unprocessed >= frame_cap) {
+				can_render = true;
+				unprocessed -= frame_cap;
+				target = scale; 
+				
+				if(glfwGetKey(win, GLFW_KEY_ESCAPE)== GL_TRUE) {
+					glfwSetWindowShouldClose(win, true);
+				}
+				if(glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_1) == GL_TRUE) {
+					x += 0.001f;
+				}
+				glfwPollEvents();
+				if(frame_time >= 1.0) {
+					frame_time = 0.0;
+					System.out.println("FPS: " + frames);
+					frames = 0;
+				}
 			}
-			if(glfwGetMouseButton(win, GLFW_MOUSE_BUTTON_1) == GL_TRUE) {
-				x += 0.001f;
+			
+			if(can_render) {
+				glClear(GL_COLOR_BUFFER_BIT);
+				shader.bind();
+				shader.setUniform("sampler", 0); // enable 0th sampler 
+				shader.setUniform("projection", camera.getProjection().mul(target));
+				tex.bind(0);
+				model.render();
+				glfwSwapBuffers(win);
+				frames++;
 			}
-			glClear(GL_COLOR_BUFFER_BIT);
-			shader.bind();
-			shader.setUniform("sampler", 0); // enable 0th sampler 
-			shader.setUniform("projection", camera.getProjection().mul(target));
-			tex.bind(0);
-			model.render();
-			glfwSwapBuffers(win);
 		}
 		glfwTerminate();
 	}

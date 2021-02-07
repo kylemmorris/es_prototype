@@ -15,6 +15,9 @@
 * 	};
 * 	currState = currState.next();
 * }
+* 
+* The game loop runs in a seperate thread
+* 
 */
 
 package engine.gamelogic;
@@ -23,10 +26,13 @@ import engine.gamelogic.OE_GameStruct;
 import engine.gamelogic.OE_State;
 import structures.database.OE_dbConnector;
 
-public class OE_GameLoop {
+public class OE_GameLoop implements Runnable {
+	// --------------------
+	// Objects the loop hangs onto
+	// --------------------
 	private OE_State currState;			// The current game state
-	private OE_GameStruct game;			// The game struct containing player data
-	//private OE_Board board;
+	private OE_GameStruct game;			// The game struct containing player/game data
+	//private OE_Board board;			// A copy of the board for the user - updated through networking
 	//private OE_Deck deck;
 	//private OE_Hand hand;
 	//private OE_Interp interp;
@@ -38,13 +44,16 @@ public class OE_GameLoop {
 	private OE_dbConnector cursor;		// The connection to the local database
 	//private OE_Logger logger;
 	
+	// -------- Internals
+	private final Thread gameLoopThread;
 	
 	public OE_GameLoop() {
+		
 		currState = OE_State.Initial;
 	}
 	
 	// --------------------
-	// The following functions are in the starting stages
+	// Main state functions
 	// --------------------
 	
 	/**
@@ -78,6 +87,24 @@ public class OE_GameLoop {
 	public int start() {
 		return 0;
 	}
+	
+	// --------------------
+	// Internal helpful functions
+	// --------------------
+	
+	public void clear() {
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//public void input(Window window);
+	//public void update(float interval);
+	//public void render(Window window);
 
 }
 
