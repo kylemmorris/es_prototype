@@ -1,2 +1,3 @@
-# Operation Extinction TCG
+# Prototype Programmable Card Game
 
+Currently deprecated.
